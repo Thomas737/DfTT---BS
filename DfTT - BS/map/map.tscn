@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://drw3lfnwfe8ea"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
+[ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
+[ext_resource type="Script" path="res://map/train/train_handler.gd" id="2_w3pa2"]
+[ext_resource type="Script" path="res://map/intersection_handler.gd" id="3_omnd1"]
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("intersection_handler")]
+script = ExtResource("1_4dur2")
+intersection_handler = NodePath("IntersectionHandler")
+
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("intersection_handler")]
+script = ExtResource("1_35g61")
+intersection_handler = NodePath("../IntersectionHandler")
+
+[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator")]
+script = ExtResource("2_w3pa2")
+tile_generator = NodePath("../Tiles")
+
+[node name="IntersectionHandler" type="Node2D" parent="."]
+position = Vector2(302, 228)
+script = ExtResource("3_omnd1")
+
+[node name="TestCamera" type="Camera2D" parent="."]
+position = Vector2(554, 499)

@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1ducmfe6ve4m"]
+
+[ext_resource type="Script" path="res://map/tile/switch.gd" id="1_251wu"]
+[ext_resource type="Texture2D" uid="uid://cwukxhaficnjk" path="res://map/tile/straight.png" id="2_mkwro"]
+[ext_resource type="Texture2D" uid="uid://b1rmki1450wlo" path="res://map/tile/curve.png" id="3_17kgc"]
+
+[sub_resource type="Curve2D" id="Curve2D_3eb0e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, -24)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_poq5e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 24)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_pfey6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 24, 0)
+}
+point_count = 2
+
+[node name="Switch" type="Node2D"]
+script = ExtResource("1_251wu")
+
+[node name="Straight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+rotation = 1.5708
+texture = ExtResource("2_mkwro")
+
+[node name="Right" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+rotation = 3.14159
+texture = ExtResource("3_17kgc")
+
+[node name="Left" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_17kgc")
+flip_h = true
+
+[node name="LeftPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_3eb0e")
+
+[node name="RightPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_poq5e")
+
+[node name="StraightPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_pfey6")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://drw3lfnwfe8ea"]
+
+[ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Tiles" type="Node2D" parent="."]
+script = ExtResource("1_35g61")
+
+[node name="TestCamera" type="Camera2D" parent="."]
+position = Vector2(158, 148)
+zoom = Vector2(2, 2)

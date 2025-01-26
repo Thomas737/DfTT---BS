@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdpbb6rvhsolo"]
+
+[ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
+[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/long_straight.png" id="3_3g06u"]
+[ext_resource type="Texture2D" uid="uid://75mpbaywio22" path="res://intersection/curve.png" id="3_3m7hx"]
+[ext_resource type="Texture2D" uid="uid://cb0mgip7kx4ly" path="res://intersection/short_straight.png" id="3_kyw6w"]
+[ext_resource type="Texture2D" uid="uid://dehtp15h0ksba" path="res://intersection/temp_arrow.png" id="4_ckrtm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl5bl"]
+size = Vector2(58, 20)
+
+[node name="IntersectionSwitch" type="Node2D"]
+script = ExtResource("1_2ja8m")
+
+[node name="Left" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LeftTurn" type="Sprite2D" parent="Left"]
+position = Vector2(-1, 0)
+texture = ExtResource("3_3m7hx")
+flip_h = true
+
+[node name="Prestraight" type="Sprite2D" parent="Left"]
+position = Vector2(-360, 0)
+rotation = 1.5708
+texture = ExtResource("3_kyw6w")
+
+[node name="PostStraight" type="Sprite2D" parent="Left"]
+position = Vector2(-1, -365)
+texture = ExtResource("3_kyw6w")
+flip_h = true
+
+[node name="PointLeftBox" type="Area2D" parent="Left"]
+position = Vector2(-137, -31)
+rotation = -0.314159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/PointLeftBox"]
+shape = SubResource("RectangleShape2D_yl5bl")
+
+[node name="Arrow" type="Sprite2D" parent="Left/PointLeftBox"]
+rotation = -1.5708
+texture = ExtResource("4_ckrtm")
+
+[node name="Right" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="RightTurn" type="Sprite2D" parent="Right"]
+position = Vector2(-1, -1)
+rotation = -3.14159
+texture = ExtResource("3_3m7hx")
+
+[node name="PostStraight" type="Sprite2D" parent="Right"]
+position = Vector2(-1, 364)
+texture = ExtResource("3_kyw6w")
+flip_h = true
+
+[node name="Prestraight" type="Sprite2D" parent="Right"]
+position = Vector2(-360, 0)
+rotation = 1.5708
+texture = ExtResource("3_kyw6w")
+
+[node name="PointRightBox" type="Area2D" parent="Right"]
+position = Vector2(-137, 30)
+rotation = 0.314159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/PointRightBox"]
+shape = SubResource("RectangleShape2D_yl5bl")
+
+[node name="Arrow" type="Sprite2D" parent="Right/PointRightBox"]
+rotation = -1.5708
+texture = ExtResource("4_ckrtm")
+
+[node name="Straight" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="StraightRail" type="Sprite2D" parent="Straight"]
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+
+[node name="PointStraightBox" type="Area2D" parent="Straight"]
+position = Vector2(-42, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Straight/PointStraightBox"]
+shape = SubResource("RectangleShape2D_yl5bl")
+
+[node name="Arrow" type="Sprite2D" parent="Straight/PointStraightBox"]
+rotation = -1.5708
+texture = ExtResource("4_ckrtm")
+
+[connection signal="input_event" from="Left/PointLeftBox" to="." method="_on_point_left_box_input_event"]
+[connection signal="input_event" from="Right/PointRightBox" to="." method="_on_point_right_box_input_event"]
+[connection signal="input_event" from="Straight/PointStraightBox" to="." method="_on_point_straight_box_input_event"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dipn655nljrdb"]
+
+[ext_resource type="Script" path="res://map/train/train.gd" id="1_vb8sy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cq6p4"]
+size = Vector2(8, 4)
+
+[node name="Train" type="Node2D"]
+script = ExtResource("1_vb8sy")
+
+[node name="CurrentTrack" type="Path2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MapRepresentation" type="PathFollow2D" parent="CurrentTrack"]
+unique_name_in_owner = true
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CurrentTrack/MapRepresentation"]
+texture = SubResource("PlaceholderTexture2D_cq6p4")
