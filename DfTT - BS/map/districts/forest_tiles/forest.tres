@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DistrictResource" load_steps=5 format=3 uid="uid://beugh7wjiyjit"]
+
+[ext_resource type="Script" path="res://map/districts/district_resource.gd" id="1_w0qpc"]
+[ext_resource type="Texture2D" uid="uid://4yx3vnmjge3i" path="res://map/districts/forest_tiles/tile_forest_alt2.png" id="2_8y2s6"]
+[ext_resource type="Texture2D" uid="uid://c4lo7dlocf6fj" path="res://map/districts/forest_tiles/tile_forest_alt3.png" id="3_3siw8"]
+[ext_resource type="Texture2D" uid="uid://dbbbaouvpjn7x" path="res://map/districts/forest_tiles/tile_forest_alt.png" id="4_ax7p6"]
+
+[resource]
+script = ExtResource("1_w0qpc")
+textures = Array[Texture2D]([ExtResource("2_8y2s6"), ExtResource("3_3siw8"), ExtResource("4_ax7p6")])

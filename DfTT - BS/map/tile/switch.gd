@@ -37,11 +37,11 @@ func get_outbound_variant(right: Variant, left: Variant, str: Variant) -> Varian
 	if straight and current_outbound == 0:
 		return str
 	
-	if straight:
-		return str
+	if left_turn:
+		return left
 	if right_turn:
 		return right
-	return left
+	return str
 
 func add_outbound_switches(outbound_switches: Array[Switch]) -> void:
 	for outbound_switch: Switch in outbound_switches:

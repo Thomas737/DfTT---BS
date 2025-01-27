@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdpbb6rvhsolo"]
 
 [ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
-[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/long_straight.png" id="3_3g06u"]
+[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://map/long_straight_rail.png" id="3_3g06u"]
 [ext_resource type="Texture2D" uid="uid://75mpbaywio22" path="res://intersection/curve.png" id="3_3m7hx"]
 [ext_resource type="Texture2D" uid="uid://cb0mgip7kx4ly" path="res://intersection/short_straight.png" id="3_kyw6w"]
 [ext_resource type="Texture2D" uid="uid://dehtp15h0ksba" path="res://intersection/temp_arrow.png" id="4_ckrtm"]

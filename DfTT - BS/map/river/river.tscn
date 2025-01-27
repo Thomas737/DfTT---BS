@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://oa44da5mn2tk"]
+
+[ext_resource type="Script" path="res://map/river/river.gd" id="1_v12yd"]
+
+[node name="River" type="Node2D"]
+script = ExtResource("1_v12yd")
+
+[node name="Straight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Right" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Left" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Crossing" type="Sprite2D" parent="."]
+unique_name_in_owner = true

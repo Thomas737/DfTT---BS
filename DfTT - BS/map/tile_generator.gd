@@ -3,15 +3,31 @@ extends Node2D
 
 const tile_preload = preload("res://map/tile/tile.tscn")
 
-const width = 32
-const height = 32
+
+const width = 24
+const height = 24
 
 @export var intersection_handler: IntersectionHandler
+
+@export_category("Districts")
+@export var city_district: DistrictResource
+@export var forest_district: DistrictResource
+@export var rural_district: DistrictResource
+
+@export_category("Noise Channels")
+@export var city_noise: FastNoiseLite
 
 var starting_switches: Array[Switch]
 var player_starting_switch: Switch
 
 func _ready() -> void:
+	city_noise.seed = randi()
+	
+	var grid_map: Dictionary = setup_grid_map()
+	setup_railways(grid_map)
+	setup_cities(grid_map)
+
+func setup_grid_map() -> Dictionary:
 	var grid_map: Dictionary = {}
 	
 	for x: int in range(width):
@@ -23,12 +39,29 @@ func _ready() -> void:
 			new_tile.construct_intersection.connect(_intersection_display_requested)
 			add_child(new_tile)
 	
+	return grid_map
+
+func setup_railways(grid_map: Dictionary) -> void:
 	setup_edge_railway(grid_map)
 	setup_vertical_routes(grid_map)
 	
 	for upper_starting_tile: Vector2 in [Vector2(floor(width/2), 0)]:
 		var tile: Tile = grid_map[upper_starting_tile]
 		player_starting_switch = tile.switch_handler.create_new_starting_switch(upper_starting_tile+Vector2.UP)
+
+func setup_cities(grid_map: Dictionary) -> void:
+	var city_gaussian: Dictionary = {}
+	for location: Vector2 in grid_map:
+		var value: float = (len(grid_map[location].switch_handler.get_switches())-4)/7 + city_noise.get_noise_2dv(location)
+		if value > 0.3:
+			grid_map[location].set_district(city_district)
+		elif value > 0.1:
+			grid_map[location].set_district(rural_district)
+		else:
+			grid_map[location].set_district(forest_district)
+
+func setup_river() -> void:
+	pass
 
 func setup_edge_railway(grid_map: Dictionary) -> void:
 	for y: int in [0, height-1]:
@@ -64,7 +97,7 @@ func randomize_vertical_sides(side: Array[int]) -> Array[Vector2]:
 		while y1 == y2:
 			y1 = randi_range(0, height-1)
 			y2 = randi_range(0, height-1)
-		random_vectors += [Vector2(x, y1), Vector2(x, y2)]
+		random_vectors += [Vector2(x, y1)] #, Vector2(x, y2)]
 	return random_vectors
 
 func randomize_routes(side: Array[Vector2], edges: Array[Vector2], grid_map: Dictionary) -> void:
@@ -107,3 +140,4 @@ func check_connected_tiles(first_tile: Tile, second_tile: Tile) -> bool:
 
 func _intersection_display_requested(tile: Tile) -> void:
 	intersection_handler.generate_intersection(tile)
+	hide()

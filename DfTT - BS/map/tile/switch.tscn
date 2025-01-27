@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1ducmfe6ve4m"]
 
 [ext_resource type="Script" path="res://map/tile/switch.gd" id="1_251wu"]
-[ext_resource type="Texture2D" uid="uid://cwukxhaficnjk" path="res://map/tile/straight.png" id="2_mkwro"]
-[ext_resource type="Texture2D" uid="uid://b1rmki1450wlo" path="res://map/tile/curve.png" id="3_17kgc"]
+[ext_resource type="Texture2D" uid="uid://by5h2lwvwhc0q" path="res://map/tile/straight_white.png" id="2_ajj27"]
+[ext_resource type="Texture2D" uid="uid://dyec4p2vqkgvd" path="res://map/tile/curve_white.png" id="3_bi57i"]
 
 [sub_resource type="Curve2D" id="Curve2D_3eb0e"]
 _data = {
@@ -28,26 +28,29 @@ script = ExtResource("1_251wu")
 [node name="Straight" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 rotation = 1.5708
-texture = ExtResource("2_mkwro")
+texture = ExtResource("2_ajj27")
 
 [node name="Right" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 rotation = 3.14159
-texture = ExtResource("3_17kgc")
+texture = ExtResource("3_bi57i")
 
 [node name="Left" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("3_17kgc")
+texture = ExtResource("3_bi57i")
 flip_h = true
 
 [node name="LeftPath" type="Path2D" parent="."]
 unique_name_in_owner = true
+visible = false
 curve = SubResource("Curve2D_3eb0e")
 
 [node name="RightPath" type="Path2D" parent="."]
 unique_name_in_owner = true
+visible = false
 curve = SubResource("Curve2D_poq5e")
 
 [node name="StraightPath" type="Path2D" parent="."]
 unique_name_in_owner = true
+visible = false
 curve = SubResource("Curve2D_pfey6")

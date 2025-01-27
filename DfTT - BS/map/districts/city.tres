@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DistrictResource" load_steps=3 format=3 uid="uid://dp4b38lhi108c"]
+
+[ext_resource type="Script" path="res://map/districts/district_resource.gd" id="1_au1xy"]
+[ext_resource type="Texture2D" uid="uid://dnqllcjhtfwam" path="res://map/districts/tile_city.png" id="2_rnant"]
+
+[resource]
+script = ExtResource("1_au1xy")
+textures = Array[Texture2D]([ExtResource("2_rnant")])

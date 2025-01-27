@@ -17,6 +17,9 @@ func _ready() -> void:
 func is_turn_intersection() -> bool:
 	return len(switch_handler.get_switches()) > 2
 
+func set_district(district: DistrictResource) -> void:
+	%District.texture = district.textures.pick_random()
+
 func connect_to(other_tile: Tile) -> void:
 	connected_tiles.append(other_tile)
 
