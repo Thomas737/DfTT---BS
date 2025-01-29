@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdpbb6rvhsolo"]
 
 [ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
-[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://map/long_straight_rail.png" id="3_3g06u"]
+[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/long_straight_rail.png" id="3_3g06u"]
 [ext_resource type="Texture2D" uid="uid://75mpbaywio22" path="res://intersection/curve.png" id="3_3m7hx"]
-[ext_resource type="Texture2D" uid="uid://cb0mgip7kx4ly" path="res://intersection/short_straight.png" id="3_kyw6w"]
 [ext_resource type="Texture2D" uid="uid://dehtp15h0ksba" path="res://intersection/temp_arrow.png" id="4_ckrtm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl5bl"]
 size = Vector2(58, 20)
+
+[sub_resource type="Curve2D" id="Curve2D_oxpc0"]
 
 [node name="IntersectionSwitch" type="Node2D"]
 script = ExtResource("1_2ja8m")
@@ -21,13 +22,14 @@ texture = ExtResource("3_3m7hx")
 flip_h = true
 
 [node name="Prestraight" type="Sprite2D" parent="Left"]
-position = Vector2(-360, 0)
+position = Vector2(-577, -1)
 rotation = 1.5708
-texture = ExtResource("3_kyw6w")
+texture = ExtResource("3_3g06u")
+flip_h = true
 
 [node name="PostStraight" type="Sprite2D" parent="Left"]
-position = Vector2(-1, -365)
-texture = ExtResource("3_kyw6w")
+position = Vector2(-1, -576)
+texture = ExtResource("3_3g06u")
 flip_h = true
 
 [node name="PointLeftBox" type="Area2D" parent="Left"]
@@ -41,6 +43,9 @@ shape = SubResource("RectangleShape2D_yl5bl")
 rotation = -1.5708
 texture = ExtResource("4_ckrtm")
 
+[node name="Node2D" type="Path2D" parent="Left"]
+curve = SubResource("Curve2D_oxpc0")
+
 [node name="Right" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -50,14 +55,15 @@ rotation = -3.14159
 texture = ExtResource("3_3m7hx")
 
 [node name="PostStraight" type="Sprite2D" parent="Right"]
-position = Vector2(-1, 364)
-texture = ExtResource("3_kyw6w")
+position = Vector2(-1, 575)
+texture = ExtResource("3_3g06u")
 flip_h = true
 
 [node name="Prestraight" type="Sprite2D" parent="Right"]
-position = Vector2(-360, 0)
+position = Vector2(-564, -1)
 rotation = 1.5708
-texture = ExtResource("3_kyw6w")
+texture = ExtResource("3_3g06u")
+flip_h = true
 
 [node name="PointRightBox" type="Area2D" parent="Right"]
 position = Vector2(-137, 30)
@@ -74,8 +80,16 @@ texture = ExtResource("4_ckrtm")
 unique_name_in_owner = true
 
 [node name="StraightRail" type="Sprite2D" parent="Straight"]
+position = Vector2(0, -1)
 rotation = 1.5708
 texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="StraightRail2" type="Sprite2D" parent="Straight"]
+position = Vector2(745, -1)
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+flip_h = true
 
 [node name="PointStraightBox" type="Area2D" parent="Straight"]
 position = Vector2(-42, 17)

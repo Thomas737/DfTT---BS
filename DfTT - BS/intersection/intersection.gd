@@ -14,3 +14,7 @@ func setup_track(switch_handler: SwitchHandler) -> void:
 
 func setup_district(district: DistrictResource) -> void:
 	pass
+
+func has_switch(switch: Switch) -> bool:
+	# TODO
+	return false

@@ -25,13 +25,13 @@ func _ready() -> void:
 	
 	var grid_map: Dictionary = setup_grid_map()
 	setup_railways(grid_map)
-	setup_cities(grid_map)
+	setup_terrain(grid_map)
 
 func setup_grid_map() -> Dictionary:
 	var grid_map: Dictionary = {}
 	
-	for x: int in range(width):
-		for y: int in range(height):
+	for x: int in range(-10, width+10):
+		for y: int in range(-10, height+10):
 			var new_tile: Tile = tile_preload.instantiate()
 			new_tile.grid_position = Vector2(x, y)
 			grid_map[Vector2(x, y)] = new_tile
@@ -49,8 +49,7 @@ func setup_railways(grid_map: Dictionary) -> void:
 		var tile: Tile = grid_map[upper_starting_tile]
 		player_starting_switch = tile.switch_handler.create_new_starting_switch(upper_starting_tile+Vector2.UP)
 
-func setup_cities(grid_map: Dictionary) -> void:
-	var city_gaussian: Dictionary = {}
+func setup_terrain(grid_map: Dictionary) -> void:
 	for location: Vector2 in grid_map:
 		var value: float = (len(grid_map[location].switch_handler.get_switches())-4)/7 + city_noise.get_noise_2dv(location)
 		if value > 0.3:
@@ -128,7 +127,7 @@ func connect_along_path(first_tile: Tile, second_tile: Tile, grid_map: Dictionar
 
 func connect_switches(first_tile: Tile, second_tile: Tile) -> void:
 	if first_tile.grid_position == second_tile.grid_position:
-		assert(false, "hmmmmm")
+		assert(false, "Uhh you can't connect switches to the same tile lmao")
 	
 	first_tile.switch_handler.create_new_switch(second_tile.switch_handler)
 	second_tile.switch_handler.create_new_switch(first_tile.switch_handler)

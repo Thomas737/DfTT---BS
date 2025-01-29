@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drw3lfnwfe8ea"]
+[gd_scene load_steps=9 format=3 uid="uid://drw3lfnwfe8ea"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
 [ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" path="res://map/districts/city.tres" id="3_tla2h"]
 [ext_resource type="Resource" uid="uid://beugh7wjiyjit" path="res://map/districts/forest_tiles/forest.tres" id="4_rnonm"]
 [ext_resource type="Resource" uid="uid://d2jdeu165je8w" path="res://map/districts/rural_tiles/rural.tres" id="5_7juao"]
-[ext_resource type="Script" path="res://map/main_camera.gd" id="8_k8whm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mljc5"]
 noise_type = 2
@@ -46,8 +45,6 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="TestCamera" type="Camera2D" parent="."]
 position = Vector2(502, 356)
-zoom = Vector2(1.5, 1.5)
-position_smoothing_enabled = true
-script = ExtResource("8_k8whm")
+zoom = Vector2(0.9, 0.9)
