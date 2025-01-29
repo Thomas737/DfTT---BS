@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
 [ext_resource type="Script" path="res://map/train/train_handler.gd" id="2_w3pa2"]
 [ext_resource type="Script" path="res://map/intersection_handler.gd" id="3_omnd1"]
-[ext_resource type="Resource" path="res://map/districts/city.tres" id="3_tla2h"]
+[ext_resource type="Resource" uid="uid://dp4b38lhi108c" path="res://map/districts/city_tiles/city.tres" id="3_tla2h"]
 [ext_resource type="Resource" uid="uid://beugh7wjiyjit" path="res://map/districts/forest_tiles/forest.tres" id="4_rnonm"]
 [ext_resource type="Resource" uid="uid://d2jdeu165je8w" path="res://map/districts/rural_tiles/rural.tres" id="5_7juao"]
 [ext_resource type="Script" path="res://map/main_camera.gd" id="8_k8whm"]
@@ -28,9 +28,10 @@ forest_district = ExtResource("4_rnonm")
 rural_district = ExtResource("5_7juao")
 city_noise = SubResource("FastNoiseLite_mljc5")
 
-[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator")]
+[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator", "intersection_handler")]
 script = ExtResource("2_w3pa2")
 tile_generator = NodePath("../Tiles")
+intersection_handler = NodePath("../IntersectionHandler")
 
 [node name="IntersectionHandler" type="CanvasLayer" parent="."]
 script = ExtResource("3_omnd1")

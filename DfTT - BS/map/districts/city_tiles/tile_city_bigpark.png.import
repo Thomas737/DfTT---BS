@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnqllcjhtfwam"
-path="res://.godot/imported/tile_city.png-c32bba05401e50bc0f3afb7bd9b079bd.ctex"
+uid="uid://c7urnsbd48m4q"
+path="res://.godot/imported/tile_city_bigpark.png-3df979223ddc2b52db3f0b9d5e6b7d10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/districts/tile_city.png"
-dest_files=["res://.godot/imported/tile_city.png-c32bba05401e50bc0f3afb7bd9b079bd.ctex"]
+source_file="res://map/districts/city_tiles/tile_city_bigpark.png"
+dest_files=["res://.godot/imported/tile_city_bigpark.png-3df979223ddc2b52db3f0b9d5e6b7d10.ctex"]
 
 [params]
 

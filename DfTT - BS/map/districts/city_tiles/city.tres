@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DistrictResource" load_steps=6 format=3 uid="uid://dp4b38lhi108c"]
+
+[ext_resource type="Script" path="res://map/districts/district_resource.gd" id="1_au1xy"]
+[ext_resource type="Texture2D" uid="uid://c7urnsbd48m4q" path="res://map/districts/city_tiles/tile_city_bigpark.png" id="2_xfk61"]
+[ext_resource type="Texture2D" uid="uid://dguim21nt621l" path="res://map/districts/city_tiles/tile_city_bland.png" id="3_3yife"]
+[ext_resource type="Texture2D" uid="uid://r6irwvxvefvq" path="res://map/districts/city_tiles/tile_city_cathedral.png" id="4_6sbv8"]
+[ext_resource type="Texture2D" uid="uid://doawav6lj5yxy" path="res://map/districts/city_tiles/tile_city_smolpark.png" id="5_2je5x"]
+
+[resource]
+script = ExtResource("1_au1xy")
+textures = Array[Texture2D]([ExtResource("2_xfk61"), ExtResource("3_3yife"), ExtResource("4_6sbv8"), ExtResource("5_2je5x")])

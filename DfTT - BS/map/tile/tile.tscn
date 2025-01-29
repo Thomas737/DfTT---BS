@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pryik"]
 size = Vector2(32, 32)
 
-[node name="Tile" type="Node2D" node_paths=PackedStringArray("switch_handler")]
+[node name="Tile" type="Node2D" node_paths=PackedStringArray("switch_handler") groups=["tiles"]]
 script = ExtResource("1_1tj22")
 switch_handler = NodePath("SwitchHandler")
 

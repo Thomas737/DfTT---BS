@@ -1,7 +1,7 @@
 class_name Train
 extends Node2D
 
-signal new_switch(train: Train, switch: Switch)
+signal new_switch(train: Train)
 
 @export var train_resource: TrainResource
 
@@ -20,4 +20,4 @@ func get_next_track() -> void:
 	%CurrentTrack.curve = new_curve
 	%MapRepresentation.progress = 0
 	current_switch = current_switch.get_outbound_switch()
-	new_switch.emit(self, current_switch)
+	new_switch.emit(self)
