@@ -1,20 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ducmfe6ve4m"]
+[gd_scene load_steps=11 format=3 uid="uid://d1ducmfe6ve4m"]
 
 [ext_resource type="Script" path="res://map/tile/switch.gd" id="1_251wu"]
-[ext_resource type="Texture2D" uid="uid://by5h2lwvwhc0q" path="res://map/tile/straight_white.png" id="2_ajj27"]
-[ext_resource type="Texture2D" uid="uid://dyec4p2vqkgvd" path="res://map/tile/curve_white.png" id="3_bi57i"]
+[ext_resource type="Texture2D" uid="uid://by5h2lwvwhc0q" path="res://map/tile/art/straight_white.png" id="2_ajj27"]
+[ext_resource type="Texture2D" uid="uid://bnafjaupsj1yc" path="res://map/tile/art/red_light.png" id="2_hkio3"]
+[ext_resource type="Texture2D" uid="uid://bm5buylkotcnu" path="res://map/tile/art/green_light.png" id="3_6d5q1"]
+[ext_resource type="Texture2D" uid="uid://dyec4p2vqkgvd" path="res://map/tile/art/curve_white.png" id="3_bi57i"]
+[ext_resource type="Texture2D" uid="uid://8x5u06quvi18" path="res://map/tile/art/stub.png" id="4_61gf3"]
+[ext_resource type="Texture2D" uid="uid://xhbam8mipxvy" path="res://map/tile/art/outline.png" id="7_l7qhs"]
 
 [sub_resource type="Curve2D" id="Curve2D_3eb0e"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, -24)
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, -5, -2, 0, 0, 0, 0, -2, -5, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -24)
 }
-point_count = 4
+point_count = 6
 
 [sub_resource type="Curve2D" id="Curve2D_poq5e"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 24)
+"points": PackedVector2Array(-1.19324, -4.47035e-08, 0, 0, -8, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, -5, 2, 0, 0, 0, 0, -2, 5, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 24)
 }
-point_count = 4
+point_count = 6
 
 [sub_resource type="Curve2D" id="Curve2D_pfey6"]
 _data = {
@@ -24,6 +28,8 @@ point_count = 2
 
 [node name="Switch" type="Node2D"]
 script = ExtResource("1_251wu")
+redlight = ExtResource("2_hkio3")
+greenlight = ExtResource("3_6d5q1")
 
 [node name="Straight" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -42,15 +48,44 @@ flip_h = true
 
 [node name="LeftPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-visible = false
 curve = SubResource("Curve2D_3eb0e")
 
 [node name="RightPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-visible = false
 curve = SubResource("Curve2D_poq5e")
 
 [node name="StraightPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-visible = false
+z_index = 1
 curve = SubResource("Curve2D_pfey6")
+
+[node name="StraightSignal" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-10, 0)
+rotation = 1.5708
+
+[node name="RightSignal" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-10, 2)
+rotation = 1.5708
+
+[node name="LeftSignal" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-10, -2)
+rotation = 1.5708
+
+[node name="Stub" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+rotation = -1.5708
+texture = ExtResource("4_61gf3")
+
+[node name="Outline" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-10, 0)
+rotation = 1.5708
+texture = ExtResource("7_l7qhs")

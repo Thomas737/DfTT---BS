@@ -1,0 +1,73 @@
+[gd_scene load_steps=16 format=3 uid="uid://drw3lfnwfe8ea"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
+[ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
+[ext_resource type="Script" path="res://map/train/train_handler.gd" id="2_w3pa2"]
+[ext_resource type="Script" path="res://map/intersection_handler.gd" id="3_omnd1"]
+[ext_resource type="Resource" uid="uid://dp4b38lhi108c" path="res://map/districts/city_tiles/city1.tres" id="3_tla2h"]
+[ext_resource type="Resource" uid="uid://bkycv3px6o04q" path="res://map/districts/city_tiles/city2.tres" id="4_kmtqp"]
+[ext_resource type="Resource" uid="uid://beugh7wjiyjit" path="res://map/districts/forest_tiles/forest.tres" id="4_rnonm"]
+[ext_resource type="Resource" uid="uid://d2jdeu165je8w" path="res://map/districts/rural_tiles/rural.tres" id="5_7juao"]
+[ext_resource type="Resource" uid="uid://buy1ap54ep584" path="res://map/districts/city_tiles/city3.tres" id="5_ritnm"]
+[ext_resource type="Resource" uid="uid://c6kkdf14hidde" path="res://map/train/player_train.tres" id="7_lj5s6"]
+[ext_resource type="Script" path="res://map/river_handler.gd" id="8_d4taf"]
+[ext_resource type="Script" path="res://map/main_camera.gd" id="8_k8whm"]
+[ext_resource type="Script" path="res://map/train/train_resource.gd" id="12_u4opn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mljc5"]
+noise_type = 3
+frequency = 0.0795
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1c7q6"]
+noise_type = 3
+frequency = 0.2035
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("intersection_handler", "tile_generator", "train_handler", "river_handler")]
+script = ExtResource("1_4dur2")
+intersection_handler = NodePath("IntersectionHandler")
+tile_generator = NodePath("Tiles")
+train_handler = NodePath("Trains")
+river_handler = NodePath("RiverHandler")
+
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("intersection_handler", "train_handler", "river_handler")]
+script = ExtResource("1_35g61")
+intersection_handler = NodePath("../IntersectionHandler")
+train_handler = NodePath("../Trains")
+river_handler = NodePath("../RiverHandler")
+city1 = ExtResource("3_tla2h")
+city2 = ExtResource("4_kmtqp")
+city3 = ExtResource("5_ritnm")
+forest_district = ExtResource("4_rnonm")
+rural_district = ExtResource("5_7juao")
+city_noise = SubResource("FastNoiseLite_mljc5")
+rural_noise = SubResource("FastNoiseLite_1c7q6")
+
+[node name="RiverHandler" type="Node2D" parent="."]
+script = ExtResource("8_d4taf")
+
+[node name="IntersectionHandler" type="CanvasLayer" parent="."]
+script = ExtResource("3_omnd1")
+
+[node name="CenterContainer" type="CenterContainer" parent="IntersectionHandler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="IntersectionHandler/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator", "intersection_handler")]
+script = ExtResource("2_w3pa2")
+tile_generator = NodePath("../Tiles")
+intersection_handler = NodePath("../IntersectionHandler")
+player_train = ExtResource("7_lj5s6")
+other_trains = Array[ExtResource("12_u4opn")]([ExtResource("7_lj5s6")])
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(502, 356)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = ExtResource("8_k8whm")

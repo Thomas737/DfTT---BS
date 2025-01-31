@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DistrictResource" load_steps=6 format=3 uid="uid://byn4vhtorrro5"]
+
+[ext_resource type="Script" path="res://map/districts/district_resource.gd" id="1_hbbbj"]
+[ext_resource type="Texture2D" uid="uid://bwe6ryxr8sx7s" path="res://map/districts/beach_tiles/city_beach_1.png" id="2_hv32a"]
+[ext_resource type="Texture2D" uid="uid://bgq8apr1qs2ac" path="res://map/districts/beach_tiles/city_beach_2.png" id="3_y75fv"]
+[ext_resource type="Texture2D" uid="uid://byxt87hwt5wgc" path="res://map/districts/beach_tiles/forest_beach.png" id="4_kgwce"]
+[ext_resource type="Texture2D" uid="uid://bp57y8o7ngsld" path="res://map/districts/beach_tiles/beach_tosea.png" id="5_nsj12"]
+
+[resource]
+script = ExtResource("1_hbbbj")
+name = "beach"
+textures = Array[Texture2D]([])
+uncommon_textures = Array[Texture2D]([])
+transition_textures = {
+"beach": [ExtResource("5_nsj12")],
+"city": [ExtResource("2_hv32a"), ExtResource("3_y75fv")],
+"forest": [ExtResource("4_kgwce")],
+"rural": [ExtResource("4_kgwce")]
+}
+transition_tile = true

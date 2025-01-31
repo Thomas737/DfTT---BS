@@ -19,12 +19,3 @@ func generate_intersection(tile: Tile) -> void:
 func remove_intersection() -> void:
 	intersection_focus = false
 	%Control.get_child(0).queue_free()
-
-# Checks whether train on relevant switch, adds it if so...
-func add_new_train(train: Train) -> void:
-	if not intersection_focus:
-		return
-	
-	var intersection: Intersection = %Control.get_child(0)
-	if intersection.has_switch(train.current_switch):
-		pass

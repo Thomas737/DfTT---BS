@@ -7,6 +7,16 @@ const switch_preload = preload("res://map/tile/switch.tscn")
 
 var all_outbound_switches: Array[Switch]
 
+func _ready() -> void:
+	if len(get_switches()) == 1:
+		on_tile.connected_tiles[0].switch_handler.set_entrance_switch(on_tile.connected_tiles[0].grid_position - on_tile.grid_position)
+
+func set_entrance_switch(direction: Vector2) -> void:
+	for switch in get_switches():
+		if switch.direction == direction:
+			switch.set_starting_switch()
+			Global.starting_switches.append(switch)
+
 func create_new_switch(from: SwitchHandler) -> void:
 	var inbound_switch: Switch = switch_preload.instantiate()
 	inbound_switch.on_tile = on_tile

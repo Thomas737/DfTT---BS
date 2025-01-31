@@ -3,19 +3,24 @@ extends Node2D
 
 const tile_preload = preload("res://map/tile/tile.tscn")
 
-
 const width = 24
 const height = 24
 
 @export var intersection_handler: IntersectionHandler
+@export var train_handler: TrainHandler
+@export var river_handler: RiverHandler
 
 @export_category("Districts")
-@export var city_district: DistrictResource
+@export var city1: DistrictResource
+@export var city2: DistrictResource
+@export var city3: DistrictResource
 @export var forest_district: DistrictResource
 @export var rural_district: DistrictResource
+@export var beach_district: DistrictResource
 
 @export_category("Noise Channels")
 @export var city_noise: FastNoiseLite
+@export var rural_noise: FastNoiseLite
 
 var starting_switches: Array[Switch]
 var player_starting_switch: Switch
@@ -26,6 +31,9 @@ func _ready() -> void:
 	var grid_map: Dictionary = setup_grid_map()
 	setup_railways(grid_map)
 	setup_terrain(grid_map)
+	
+	for tile: Tile in grid_map.values():
+		add_child(tile)
 
 func setup_grid_map() -> Dictionary:
 	var grid_map: Dictionary = {}
@@ -37,7 +45,6 @@ func setup_grid_map() -> Dictionary:
 			grid_map[Vector2(x, y)] = new_tile
 			new_tile.position = Vector2(x, y) * Global.tile_size
 			new_tile.construct_intersection.connect(_intersection_display_requested)
-			add_child(new_tile)
 	
 	return grid_map
 
@@ -45,27 +52,49 @@ func setup_railways(grid_map: Dictionary) -> void:
 	setup_edge_railway(grid_map)
 	setup_vertical_routes(grid_map)
 	
-	for upper_starting_tile: Vector2 in [Vector2(floor(width/2), 0)]:
-		var tile: Tile = grid_map[upper_starting_tile]
-		player_starting_switch = tile.switch_handler.create_new_starting_switch(upper_starting_tile+Vector2.UP)
+	connect_along_path(grid_map[Vector2(width/2, 0)], grid_map[Vector2(width/2, -8)], grid_map)
+	var starting_tile: Tile = grid_map[Vector2(width/2, -8)]
+	player_starting_switch = starting_tile.switch_handler.create_new_starting_switch(Vector2(width/2, -9))
 
 func setup_terrain(grid_map: Dictionary) -> void:
 	for location: Vector2 in grid_map:
-		var value: float = (len(grid_map[location].switch_handler.get_switches())-4)/7 + city_noise.get_noise_2dv(location)
-		if value > 0.3:
-			grid_map[location].set_district(city_district)
-		elif value > 0.1:
+		var city_value: float = (len(grid_map[location].switch_handler.get_switches())-4)/7 + city_noise.get_noise_2dv(location)
+		if city_value > 0.3:
+			grid_map[location].set_district(city1)
+		elif city_value > 0.25:
+			grid_map[location].set_district(city2)
+		elif city_value > 0.15:
+			grid_map[location].set_district(city3)
+		if city_value > 0.15:
+			continue
+		
+		var rural_value: float = rural_noise.get_noise_2dv(location)
+		if rural_value > 0:
 			grid_map[location].set_district(rural_district)
-		else:
-			grid_map[location].set_district(forest_district)
-
-func setup_river() -> void:
-	pass
+			continue
+		
+		grid_map[location].set_district(forest_district)
+	
+	for location: Vector2 in grid_map:
+		if location.x == -5:
+			grid_map[location].set_district(beach_district, grid_map[location+Vector2.RIGHT].district)
+	for location: Vector2 in grid_map:
+		if location.x == -6:
+			grid_map[location].set_district(beach_district, grid_map[location+Vector2.RIGHT].district)
+		if location.x < -6:
+			grid_map[location].set_district(null)
 
 func setup_edge_railway(grid_map: Dictionary) -> void:
 	for y: int in [0, height-1]:
 		for x: int in range(width-1):
 			connect_switches(grid_map[Vector2(x, y)], grid_map[Vector2(x+1, y)])
+	
+	for x in range(-10, 0):
+		connect_switches(grid_map[Vector2(x, 0)], grid_map[Vector2(x+1, 0)])
+	for x in range(-10, -3):
+		connect_switches(grid_map[Vector2(x, 3)], grid_map[Vector2(x+1, 3)])
+	for y in range(3):
+		connect_switches(grid_map[Vector2(-3, y)], grid_map[Vector2(-3, y+1)])
 
 func setup_vertical_routes(grid_map: Dictionary) -> void:
 	var left_side: Array[int] = []
@@ -116,6 +145,8 @@ func connect_along_path(first_tile: Tile, second_tile: Tile, grid_map: Dictionar
 	var path: Vector2 = second_tile.grid_position - first_tile.grid_position
 	while not (path.x == 0 and path.y == 0):
 		var prev_path: Vector2 = path
+		
+		# DO NOT FIX THIS BUG - it generates interesting rail-routes
 		if randi_range(0, 1) and path.x != 0:
 			path.x = (abs(path.x)-1)*sign(path.x)
 		else:
@@ -139,4 +170,7 @@ func check_connected_tiles(first_tile: Tile, second_tile: Tile) -> bool:
 
 func _intersection_display_requested(tile: Tile) -> void:
 	intersection_handler.generate_intersection(tile)
+	train_handler.intersection_view()
+	river_handler.hide()
+	%Pier.hide()
 	hide()

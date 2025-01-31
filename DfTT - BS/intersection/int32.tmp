@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdpbb6rvhsolo"]
+
+[ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
+[ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/straight_rail.png" id="3_3g06u"]
+[ext_resource type="Texture2D" uid="uid://75mpbaywio22" path="res://intersection/curve.png" id="3_3m7hx"]
+[ext_resource type="Script" path="res://intersection/mechanical_switch.gd" id="4_ram1v"]
+[ext_resource type="Texture2D" uid="uid://bscg82q61871" path="res://intersection/switch_handle.png" id="5_hyp7m"]
+[ext_resource type="Texture2D" uid="uid://dowcmvq57i5yd" path="res://intersection/switch_base.png" id="6_lncr4"]
+
+[sub_resource type="Curve2D" id="Curve2D_oxpc0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -961, 0, -45.1791, 1.76777, 45.1791, -1.76777, -192, -1, -14.0308, 7.01539, 14.0308, -7.01539, -109, -20, -13.7502, 11.5052, 13.7502, -11.5052, -69, -46, -5.3317, 8.13785, 5.3317, -8.13785, -36, -82, -4.77046, 12.0665, 4.77046, -12.0665, -16, -119, -1.96431, 13.7502, 1.96431, -13.7502, -5, -156, -1, 18.8266, 1, -18.8266, -1, -201, 0, 0, 0, 0, 0, -960)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_hguyf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -961, 0, -45.179, -1.768, 45.179, 1.768, -192, 1, -14.031, -7.015, 14.031, 7.015, -109, 20, -13.75, -11.505, 13.75, 11.505, -69, 46, -5.332, -8.138, 5.332, 8.138, -36, 82, -4.77, -12.066, 4.77, 12.066, -16, 119, -1.964, -13.75, 1.964, 13.75, -5, 156, -1, -18.827, 1, 18.827, -1, 201, 0, 0, 0, 0, 0, 960)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_iiwp1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -961, 0, 0, 0, 0, 0, 1129, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxrfd"]
+size = Vector2(33, 24)
+
+[node name="IntersectionSwitch" type="Node2D" node_paths=PackedStringArray("mechanical_switch")]
+script = ExtResource("1_2ja8m")
+mechanical_switch = NodePath("MechanicalSwitch")
+
+[node name="Left" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LeftTurn" type="Sprite2D" parent="Left"]
+texture = ExtResource("3_3m7hx")
+flip_h = true
+
+[node name="Prestraight" type="Sprite2D" parent="Left"]
+position = Vector2(-577, 0)
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="PostStraight" type="Sprite2D" parent="Left"]
+position = Vector2(0, -576)
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="LeftPath" type="Path2D" parent="Left"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_oxpc0")
+
+[node name="Right" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="RightTurn" type="Sprite2D" parent="Right"]
+rotation = -3.14159
+texture = ExtResource("3_3m7hx")
+
+[node name="PostStraight" type="Sprite2D" parent="Right"]
+position = Vector2(0, 575)
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="Prestraight" type="Sprite2D" parent="Right"]
+position = Vector2(-564, 0)
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="RightPath" type="Path2D" parent="Right"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_hguyf")
+
+[node name="Straight" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="StraightRail" type="Sprite2D" parent="Straight"]
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="StraightRail2" type="Sprite2D" parent="Straight"]
+position = Vector2(745, 0)
+rotation = 1.5708
+texture = ExtResource("3_3g06u")
+flip_h = true
+
+[node name="StraightPath" type="Path2D" parent="Straight"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_iiwp1")
+
+[node name="MechanicalSwitch" type="Node2D" parent="."]
+position = Vector2(-220, -21)
+scale = Vector2(2, 2)
+script = ExtResource("4_ram1v")
+
+[node name="Handle" type="Sprite2D" parent="MechanicalSwitch"]
+unique_name_in_owner = true
+texture = ExtResource("5_hyp7m")
+
+[node name="Area2D" type="Area2D" parent="MechanicalSwitch/Handle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MechanicalSwitch/Handle/Area2D"]
+position = Vector2(7.5, 0)
+shape = SubResource("RectangleShape2D_cxrfd")
+
+[node name="Base" type="Sprite2D" parent="MechanicalSwitch"]
+texture = ExtResource("6_lncr4")
+
+[connection signal="mouse_entered" from="MechanicalSwitch/Handle/Area2D" to="MechanicalSwitch" method="_mouse_entered_handle"]
+[connection signal="mouse_exited" from="MechanicalSwitch/Handle/Area2D" to="MechanicalSwitch" method="_mouse_exited_handle"]

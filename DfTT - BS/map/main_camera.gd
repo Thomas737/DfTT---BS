@@ -3,10 +3,10 @@ extends Camera2D
 const camera_TL = Vector2(-576, -324)
 const camera_BR = Vector2(576, 324)
 
-const limit_TL = Vector2(-160, -160)
+const limit_TL = Vector2(-500, -160)
 const limit_BR = Vector2(900, 900)
 
-const target_zoom = Vector2.ONE * 1.5
+const target_zoom = Vector2.ONE * 2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

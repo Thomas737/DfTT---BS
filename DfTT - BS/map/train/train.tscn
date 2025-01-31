@@ -1,19 +1,86 @@
-[gd_scene load_steps=3 format=3 uid="uid://dipn655nljrdb"]
+[gd_scene load_steps=6 format=3 uid="uid://dipn655nljrdb"]
 
 [ext_resource type="Script" path="res://map/train/train.gd" id="1_vb8sy"]
+[ext_resource type="AudioStream" uid="uid://lu2tmrongi23" path="res://map/train/train_passing.wav" id="2_g056x"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cq6p4"]
 size = Vector2(8, 4)
 
+[sub_resource type="Curve2D" id="Curve2D_xn6in"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3r3g"]
+size = Vector2(20, 61)
+
 [node name="Train" type="Node2D"]
+top_level = true
+z_index = 2
 script = ExtResource("1_vb8sy")
 
 [node name="CurrentTrack" type="Path2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 
 [node name="MapRepresentation" type="PathFollow2D" parent="CurrentTrack"]
 unique_name_in_owner = true
 loop = false
 
-[node name="Sprite2D" type="Sprite2D" parent="CurrentTrack/MapRepresentation"]
+[node name="MapIcon" type="Sprite2D" parent="CurrentTrack/MapRepresentation"]
+unique_name_in_owner = true
 texture = SubResource("PlaceholderTexture2D_cq6p4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="CurrentIntersection" type="Path2D" parent="CanvasLayer/CenterContainer/Control"]
+unique_name_in_owner = true
+visible = false
+curve = SubResource("Curve2D_xn6in")
+
+[node name="Engine" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
+unique_name_in_owner = true
+loop = false
+
+[node name="EngineSprite" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
+unique_name_in_owner = true
+rotation = 1.5708
+texture = SubResource("PlaceholderTexture2D_f3r3g")
+
+[node name="Carriage" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
+unique_name_in_owner = true
+loop = false
+
+[node name="CarriageSprite" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Carriage"]
+unique_name_in_owner = true
+rotation = 1.5708
+texture = SubResource("PlaceholderTexture2D_f3r3g")
+
+[node name="TrainPassing" type="AudioStreamPlayer2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Carriage"]
+unique_name_in_owner = true
+stream = ExtResource("2_g056x")
+
+[node name="Carriage2" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
+unique_name_in_owner = true
+loop = false
+
+[node name="CarriageSprite2" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Carriage2"]
+unique_name_in_owner = true
+rotation = 1.5708
+texture = SubResource("PlaceholderTexture2D_f3r3g")
+
+[node name="Carriage3" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
+unique_name_in_owner = true
+loop = false
+
+[node name="CarriageSprite3" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Carriage3"]
+unique_name_in_owner = true
+rotation = 1.5708
+texture = SubResource("PlaceholderTexture2D_f3r3g")

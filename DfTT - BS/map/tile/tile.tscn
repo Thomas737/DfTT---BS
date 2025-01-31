@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8x1gsdpkla8s"]
+[gd_scene load_steps=5 format=3 uid="uid://c8x1gsdpkla8s"]
 
 [ext_resource type="Script" path="res://map/tile/tile.gd" id="1_1tj22"]
 [ext_resource type="Script" path="res://map/tile/switch_handler.gd" id="2_gy37g"]
+[ext_resource type="Texture2D" uid="uid://cqoyff34v52jc" path="res://map/tile/art/selected_zone.png" id="3_ajxmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pryik"]
 size = Vector2(32, 32)
@@ -21,6 +22,15 @@ on_tile = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
 shape = SubResource("RectangleShape2D_pryik")
+
+[node name="Hovering" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = ExtResource("3_ajxmn")
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 
 [connection signal="input_event" from="ClickArea" to="." method="_on_mouse_input"]
 [connection signal="mouse_entered" from="ClickArea" to="." method="_on_mouse_entered"]

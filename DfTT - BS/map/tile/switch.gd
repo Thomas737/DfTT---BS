@@ -1,6 +1,9 @@
 class_name Switch
 extends Node2D
 
+signal new_train(train: Train)
+signal train_outbound(train: Train, outbound_direction: int)
+
 var on_tile: Tile
 var direction: Vector2
 
@@ -12,9 +15,25 @@ var right_turn: Switch = null
 @onready var straight_path: Curve2D = %StraightPath.curve
 @onready var right_path: Curve2D = %RightPath.curve
 
-var current_outbound: int = 0
+@export var redlight: Texture2D
+@export var greenlight: Texture2D
+
+var current_outbound: int = 0:
+	set(new_outbound):
+		if len(on_tile.connected_tiles) < 3:
+			return
+		current_outbound = new_outbound
+		%StraightSignal.texture = redlight
+		%RightSignal.texture = redlight
+		%LeftSignal.texture = redlight
+		var green_signal: Sprite2D = [%LeftSignal, %StraightSignal, %RightSignal][get_outbound_direction()+1]
+		green_signal.texture = greenlight
+
+var inbound_trains: Array[Train] = []
+var outbound_trains: Array[Train] = []
 
 func _ready() -> void:
+	current_outbound = 0
 	rotation = direction.angle()
 	if not left_turn:
 		%Left.hide()
@@ -22,12 +41,18 @@ func _ready() -> void:
 		%Right.hide()
 	if not straight:
 		%Straight.hide()
+	
+	if [right_turn, left_turn, straight].count(null) > 1:
+		%Outline.hide()
 
 func get_outbound_path() -> Curve2D:
 	return get_outbound_variant(right_path, left_path, straight_path)
 
 func get_outbound_switch() -> Switch:
 	return get_outbound_variant(right_turn, left_turn, straight)
+
+func get_outbound_direction() -> int:
+	return get_outbound_variant(1, -1, 0)
 
 func get_outbound_variant(right: Variant, left: Variant, str: Variant) -> Variant:
 	if right_turn and current_outbound == 1:
@@ -37,11 +62,14 @@ func get_outbound_variant(right: Variant, left: Variant, str: Variant) -> Varian
 	if straight and current_outbound == 0:
 		return str
 	
-	if left_turn:
-		return left
 	if right_turn:
 		return right
+	if left_turn:
+		return left
 	return str
+
+func set_starting_switch() -> void:
+	%Stub.show()
 
 func add_outbound_switches(outbound_switches: Array[Switch]) -> void:
 	for outbound_switch: Switch in outbound_switches:
