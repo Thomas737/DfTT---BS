@@ -8,7 +8,7 @@ const train_preload = preload("res://map/train/train.tscn")
 
 @export_category("Train Types")
 @export var player_train: TrainResource
-@export var other_trains: Array[TrainResource]
+@export var cargo_train: TrainResource
 
 func _ready() -> void:
 	var new_train: Train = train_preload.instantiate()
@@ -22,7 +22,8 @@ func _ready() -> void:
 func random_create_train() -> void:
 	var new_train: Train = train_preload.instantiate()
 	new_train.current_switch = Global.starting_switches.pick_random()
-	new_train.train_resource = player_train
+	new_train.train_resource = cargo_train
+	new_train.timing_adjustment = 1
 	add_child(new_train)
 
 func map_view() -> void:

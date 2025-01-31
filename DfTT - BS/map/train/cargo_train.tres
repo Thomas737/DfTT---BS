@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrainResource" load_steps=5 format=3 uid="uid://brpwpcpj01lvr"]
+
+[ext_resource type="Texture2D" uid="uid://bwojahqet6r62" path="res://map/train/Container_Modern.png" id="1_7qpda"]
+[ext_resource type="Script" path="res://map/train/train_resource.gd" id="1_aaewx"]
+[ext_resource type="Texture2D" uid="uid://bet2obhbi25ob" path="res://map/train/Loco_Modern2.png" id="2_o64dn"]
+[ext_resource type="Texture2D" uid="uid://cet4408ki2eor" path="res://map/train/map_icons/train_icon0.png" id="3_rfrbw"]
+
+[resource]
+script = ExtResource("1_aaewx")
+speed = 5.0
+map_texture = ExtResource("3_rfrbw")
+engine = ExtResource("2_o64dn")
+carriage = ExtResource("1_7qpda")

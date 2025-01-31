@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtl0gdqo8yfix"
-path="res://.godot/imported/cutscene_track.png-6f7d4cfa13ce5b12f33df022e1212359.ctex"
+uid="uid://chmscuqwgiryq"
+path="res://.godot/imported/cs_wb_smoke_f1.png-38b5aa84d7f3fecbede1f2fd62a5c3ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cutscenes/cutscene_track.png"
-dest_files=["res://.godot/imported/cutscene_track.png-6f7d4cfa13ce5b12f33df022e1212359.ctex"]
+source_file="res://cutscenes/bogey/cs_wb_smoke_f1.png"
+dest_files=["res://.godot/imported/cs_wb_smoke_f1.png-38b5aa84d7f3fecbede1f2fd62a5c3ba.ctex"]
 
 [params]
 

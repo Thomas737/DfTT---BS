@@ -93,6 +93,11 @@ func setup_edge_railway(grid_map: Dictionary) -> void:
 		connect_switches(grid_map[Vector2(x, 0)], grid_map[Vector2(x+1, 0)])
 	for x in range(-10, -3):
 		connect_switches(grid_map[Vector2(x, 3)], grid_map[Vector2(x+1, 3)])
+	var end_tile: Tile = grid_map[Vector2(-7, 0)]
+	end_tile.switch_handler.set_win_switch(Vector2.LEFT)
+	end_tile = grid_map[Vector2(-7, 3)]
+	end_tile.switch_handler.set_win_switch(Vector2.LEFT)
+	
 	for y in range(3):
 		connect_switches(grid_map[Vector2(-3, y)], grid_map[Vector2(-3, y+1)])
 

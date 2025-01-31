@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://map/river_handler.gd" id="8_d4taf"]
 [ext_resource type="Script" path="res://map/main_camera.gd" id="8_k8whm"]
 [ext_resource type="Resource" uid="uid://byn4vhtorrro5" path="res://map/districts/beach_tiles/beach.tres" id="8_m3a40"]
-[ext_resource type="Script" path="res://map/train/train_resource.gd" id="12_u4opn"]
+[ext_resource type="Resource" uid="uid://brpwpcpj01lvr" path="res://map/train/cargo_train.tres" id="14_5xoee"]
 [ext_resource type="AudioStream" uid="uid://cjlsnxky0plrs" path="res://background_audio/computer_startup.wav" id="16_hj667"]
 [ext_resource type="AudioStream" uid="uid://b7e2c2wddndts" path="res://background_audio/continuous_computer.wav" id="17_m4q1x"]
 [ext_resource type="AudioStream" uid="uid://bwt1r1m3usyas" path="res://background_audio/modern_railway.wav" id="18_sxegg"]
@@ -75,7 +75,7 @@ script = ExtResource("2_w3pa2")
 tile_generator = NodePath("../Tiles")
 intersection_handler = NodePath("../IntersectionHandler")
 player_train = ExtResource("7_lj5s6")
-other_trains = Array[ExtResource("12_u4opn")]([ExtResource("7_lj5s6")])
+cargo_train = ExtResource("14_5xoee")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(502, 356)

@@ -71,6 +71,9 @@ func get_outbound_variant(right: Variant, left: Variant, str: Variant) -> Varian
 func set_starting_switch() -> void:
 	%Stub.show()
 
+func set_win_switch() -> void:
+	pass
+
 func add_outbound_switches(outbound_switches: Array[Switch]) -> void:
 	for outbound_switch: Switch in outbound_switches:
 		add_outbound_switch(outbound_switch)

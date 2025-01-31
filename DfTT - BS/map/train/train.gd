@@ -11,6 +11,7 @@ var current_switch: Switch = null
 var previous_switch: Switch = null
 
 var player_train: bool = false
+var timing_adjustment: float = 0
 
 func _ready() -> void:
 	%EngineSprite.texture = train_resource.engine
@@ -45,9 +46,21 @@ func get_next_track() -> void:
 	%CurrentTrack.curve = new_curve
 	%MapRepresentation.progress = 0
 	current_switch = current_switch.get_outbound_switch()
+	if not current_switch:
+		if player_train:
+			Global.game_lost(self)
+			return
+		fade_and_delete()
+		return
 	current_switch.inbound_trains.append(self)
 	current_switch.new_train.emit(self)
 	previous_switch.train_outbound.emit(self, previous_switch.get_outbound_direction())
+
+func fade_and_delete() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.finished.connect(queue_free)
+	tween.finished.connect(Global.train_lost.bind(self))
 
 func setup_close_view(curve: Curve2D, outbound: bool, angle: float, account_inbound_progress: float = 0) -> void:
 	%CurrentIntersection.show()

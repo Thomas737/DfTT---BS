@@ -1,0 +1,117 @@
+[gd_scene load_steps=24 format=3 uid="uid://bmfw7heifutpa"]
+
+[ext_resource type="Texture2D" uid="uid://dmnqhpldbfbun" path="res://cutscenes/bogey/cs_wb_opening_01.png" id="1_dl0pp"]
+[ext_resource type="Script" path="res://cutscenes/tamper_cutscene.gd" id="1_rtjv2"]
+[ext_resource type="Texture2D" uid="uid://cit0po1r25gln" path="res://cutscenes/bogey/cs_wb_opening_02.png" id="2_lkn8w"]
+[ext_resource type="Texture2D" uid="uid://b0fjiggfdfsru" path="res://cutscenes/bogey/cs_wb_opening_03.png" id="3_exa4f"]
+[ext_resource type="Texture2D" uid="uid://b5asvny4o5mnj" path="res://cutscenes/bogey/cs_wb_opening_04.png" id="4_ed56j"]
+[ext_resource type="Texture2D" uid="uid://yic57lgpk5dg" path="res://cutscenes/bogey/cs_wb_opening_05.png" id="5_8yl8r"]
+[ext_resource type="Texture2D" uid="uid://bp8qh3dkj355w" path="res://cutscenes/bogey/cs_wb_opening_06.png" id="6_6r8nk"]
+[ext_resource type="Texture2D" uid="uid://bbvh22a1o1kdt" path="res://cutscenes/bogey/cs_wb_opening_07.png" id="7_on82h"]
+[ext_resource type="Texture2D" uid="uid://bbhnclqp2ttss" path="res://cutscenes/bogey/cs_wb_opening_08.png" id="8_h3nt2"]
+[ext_resource type="Texture2D" uid="uid://bfnsvbixs2cul" path="res://cutscenes/bogey/cs_wb_opening_09.png" id="9_som7r"]
+[ext_resource type="Texture2D" uid="uid://ca127yg6acr1k" path="res://cutscenes/bogey/cs_wb_opening_10.png" id="10_pk3o7"]
+[ext_resource type="Texture2D" uid="uid://b0r55o2arnvdm" path="res://cutscenes/bogey/cs_wb_opening_11.png" id="11_hsabf"]
+[ext_resource type="Texture2D" uid="uid://coaur2wllysja" path="res://cutscenes/bogey/cs_wb_opening_12.png" id="12_2x54t"]
+[ext_resource type="Texture2D" uid="uid://ddier5bkkpeww" path="res://cutscenes/bogey/cs_wb_opening_13.png" id="13_plcfp"]
+[ext_resource type="Texture2D" uid="uid://duei6jr7tst60" path="res://cutscenes/bogey/cs_wb_smoke_1.png" id="14_7qnfp"]
+[ext_resource type="Texture2D" uid="uid://cmg65ofxhhrpd" path="res://cutscenes/bogey/cs_wb_smoke_2.png" id="15_pcobt"]
+[ext_resource type="Texture2D" uid="uid://bb5g103xtkb8c" path="res://cutscenes/bogey/cs_wb_smoke_3.png" id="16_pd74r"]
+[ext_resource type="Texture2D" uid="uid://chllbgd64wfs2" path="res://cutscenes/bogey/cs_wb_smoke_4.png" id="17_8y4qx"]
+[ext_resource type="Texture2D" uid="uid://m8f23a0wrmye" path="res://cutscenes/bogey/cs_wb_smoke_5.png" id="18_1jsbm"]
+[ext_resource type="Texture2D" uid="uid://chmscuqwgiryq" path="res://cutscenes/bogey/cs_wb_smoke_f1.png" id="19_v6lq5"]
+[ext_resource type="Texture2D" uid="uid://duy0lyb3txwtj" path="res://cutscenes/bogey/cs_wb_smoke_f2.png" id="20_2dp6f"]
+[ext_resource type="Texture2D" uid="uid://c6xg5itn2hmrq" path="res://cutscenes/bogey/cs_wb_smoke_f3.png" id="21_g3bdk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjh0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dl0pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lkn8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exa4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ed56j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8yl8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6r8nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_on82h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h3nt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_som7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pk3o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hsabf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2x54t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_plcfp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_7qnfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_pcobt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pd74r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8y4qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1jsbm")
+}],
+"loop": false,
+"name": &"smoke_developing",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_v6lq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2dp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_g3bdk")
+}],
+"loop": true,
+"name": &"smoke_loop",
+"speed": 12.0
+}]
+
+[node name="TamperCutscene" type="Node2D"]
+script = ExtResource("1_rtjv2")
+
+[node name="Opened" type="Sprite2D" parent="."]
+
+[node name="Bogey" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_vjh0i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
