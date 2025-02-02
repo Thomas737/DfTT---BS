@@ -66,6 +66,8 @@ texture = SubResource("PlaceholderTexture2D_f3r3g")
 [node name="TrainPassing" type="AudioStreamPlayer2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Carriage"]
 unique_name_in_owner = true
 stream = ExtResource("2_g056x")
+volume_db = 4.0
+max_distance = 1200.0
 
 [node name="Carriage2" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
 unique_name_in_owner = true

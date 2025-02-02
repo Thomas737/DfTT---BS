@@ -1,3 +1,4 @@
+class_name MainCamera
 extends Camera2D
 
 const camera_TL = Vector2(-576, -324)

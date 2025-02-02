@@ -70,10 +70,11 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator", "intersection_handler")]
+[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator", "intersection_handler", "main_camera")]
 script = ExtResource("2_w3pa2")
 tile_generator = NodePath("../Tiles")
 intersection_handler = NodePath("../IntersectionHandler")
+main_camera = NodePath("../MainCamera")
 player_train = ExtResource("7_lj5s6")
 cargo_train = ExtResource("14_5xoee")
 

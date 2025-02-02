@@ -25,3 +25,6 @@ func _input(event: InputEvent) -> void:
 				train_handler.map_view()
 				river_handler.show()
 				%Pier.show()
+		
+		if event.is_action_released("space"):
+			train_handler.focus_next_train()

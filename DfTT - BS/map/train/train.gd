@@ -2,7 +2,9 @@ class_name Train
 extends Node2D
 
 const carriage_offsets = 66
+
 @onready var carriage_path_followers: Array[PathFollow2D] = [%Carriage3, %Carriage2, %Carriage, %Engine]
+@onready var map_icon: Sprite2D = %MapIcon
 var close_view: bool
 
 var train_resource: TrainResource
@@ -18,7 +20,7 @@ func _ready() -> void:
 	%CarriageSprite.texture = train_resource.carriage
 	%CarriageSprite2.texture = train_resource.carriage
 	%CarriageSprite3.texture = train_resource.carriage
-	%MapIcon.texture = train_resource.map_texture
+	map_icon.texture = train_resource.map_texture
 
 func _process(delta: float) -> void:
 	if %MapRepresentation.progress_ratio >= 1 or not %CurrentTrack.curve:
@@ -32,7 +34,7 @@ func _process(delta: float) -> void:
 		%CurrentIntersection.curve = null
 	
 	if %Carriage2.progress_ratio > 0 and not %TrainPassing.playing:
-		%TrainPassing.play()
+		%TrainPassing.play(0)
 
 func get_next_track() -> void:
 	if previous_switch:
@@ -87,6 +89,8 @@ func setup_new_close_path(curve: Curve2D) -> void:
 func set_view(value: int) -> void:
 	if value == 0:
 		%CurrentIntersection.hide()
+		%CurrentIntersection.curve = null
+		%TrainPassing.stop()
 		%CurrentTrack.show()
 	else:
 		%CurrentTrack.hide()

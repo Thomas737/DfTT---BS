@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmfw7heifutpa"]
+[gd_scene load_steps=34 format=3 uid="uid://bmfw7heifutpa"]
 
 [ext_resource type="Texture2D" uid="uid://dmnqhpldbfbun" path="res://cutscenes/bogey/cs_wb_opening_01.png" id="1_dl0pp"]
 [ext_resource type="Script" path="res://cutscenes/tamper_cutscene.gd" id="1_rtjv2"]
 [ext_resource type="Texture2D" uid="uid://cit0po1r25gln" path="res://cutscenes/bogey/cs_wb_opening_02.png" id="2_lkn8w"]
+[ext_resource type="Texture2D" uid="uid://byf6ets5n2fn" path="res://cutscenes/bogey/cs_wb_background_openhatch.png" id="2_rykbn"]
+[ext_resource type="Texture2D" uid="uid://6i15lxpkmk1n" path="res://cutscenes/parallax/parallax_02_fulltrain.png" id="2_yk6e7"]
 [ext_resource type="Texture2D" uid="uid://b0fjiggfdfsru" path="res://cutscenes/bogey/cs_wb_opening_03.png" id="3_exa4f"]
 [ext_resource type="Texture2D" uid="uid://b5asvny4o5mnj" path="res://cutscenes/bogey/cs_wb_opening_04.png" id="4_ed56j"]
 [ext_resource type="Texture2D" uid="uid://yic57lgpk5dg" path="res://cutscenes/bogey/cs_wb_opening_05.png" id="5_8yl8r"]
@@ -15,13 +17,55 @@
 [ext_resource type="Texture2D" uid="uid://coaur2wllysja" path="res://cutscenes/bogey/cs_wb_opening_12.png" id="12_2x54t"]
 [ext_resource type="Texture2D" uid="uid://ddier5bkkpeww" path="res://cutscenes/bogey/cs_wb_opening_13.png" id="13_plcfp"]
 [ext_resource type="Texture2D" uid="uid://duei6jr7tst60" path="res://cutscenes/bogey/cs_wb_smoke_1.png" id="14_7qnfp"]
-[ext_resource type="Texture2D" uid="uid://cmg65ofxhhrpd" path="res://cutscenes/bogey/cs_wb_smoke_2.png" id="15_pcobt"]
-[ext_resource type="Texture2D" uid="uid://bb5g103xtkb8c" path="res://cutscenes/bogey/cs_wb_smoke_3.png" id="16_pd74r"]
-[ext_resource type="Texture2D" uid="uid://chllbgd64wfs2" path="res://cutscenes/bogey/cs_wb_smoke_4.png" id="17_8y4qx"]
-[ext_resource type="Texture2D" uid="uid://m8f23a0wrmye" path="res://cutscenes/bogey/cs_wb_smoke_5.png" id="18_1jsbm"]
-[ext_resource type="Texture2D" uid="uid://chmscuqwgiryq" path="res://cutscenes/bogey/cs_wb_smoke_f1.png" id="19_v6lq5"]
-[ext_resource type="Texture2D" uid="uid://duy0lyb3txwtj" path="res://cutscenes/bogey/cs_wb_smoke_f2.png" id="20_2dp6f"]
-[ext_resource type="Texture2D" uid="uid://c6xg5itn2hmrq" path="res://cutscenes/bogey/cs_wb_smoke_f3.png" id="21_g3bdk"]
+[ext_resource type="AudioStream" uid="uid://dpjvo7hiv0jpp" path="res://cutscenes/bogey/workshop_sound.wav" id="18_35vrs"]
+[ext_resource type="AudioStream" uid="uid://rb3gpacqbpbo" path="res://cutscenes/bogey/welding.wav" id="19_3ft27"]
+[ext_resource type="AudioStream" uid="uid://bhr530u3nvn3s" path="res://cutscenes/bogey/small_explosion.mp3" id="20_aejtc"]
+
+[sub_resource type="Gradient" id="Gradient_j45jw"]
+offsets = PackedFloat32Array(0, 0.696721, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.557377, 0.557377, 0.557377, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h5pbd"]
+gradient = SubResource("Gradient_j45jw")
+
+[sub_resource type="Curve" id="Curve_c6xok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.572848, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ousjy"]
+curve = SubResource("Curve_c6xok")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ser2e"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-42.39, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -30, 0)
+scale_min = 1.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ousjy")
+color = Color(0.92549, 0, 0.164706, 1)
+color_ramp = SubResource("GradientTexture1D_h5pbd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aflme"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(42.91, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -30, 0)
+scale_min = 1.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ousjy")
+color = Color(0.92549, 0, 0.164706, 1)
+color_ramp = SubResource("GradientTexture1D_h5pbd")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjh0i"]
 animations = [{
@@ -72,42 +116,76 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("14_7qnfp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_pcobt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_pd74r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_8y4qx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_1jsbm")
-}],
-"loop": false,
-"name": &"smoke_developing",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("19_v6lq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_2dp6f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_g3bdk")
 }],
 "loop": true,
 "name": &"smoke_loop",
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_midhu"]
+offsets = PackedFloat32Array(0, 0.672131, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.471311, 0.471311, 0.471311, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xk3o2"]
+gradient = SubResource("Gradient_midhu")
+
+[sub_resource type="Curve" id="Curve_0wqf4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.817881, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u4ckc"]
+curve = SubResource("Curve_0wqf4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4djny"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 0.9
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 24.19
+initial_velocity_max = 45.7
+gravity = Vector3(0, 50, 0)
+scale_curve = SubResource("CurveTexture_u4ckc")
+color = Color(1, 0.627451, 0, 1)
+color_ramp = SubResource("GradientTexture1D_xk3o2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eb637"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 75.43, 0)
+emission_shape_scale = Vector3(150, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 8.07
+initial_velocity_max = 8.07
+gravity = Vector3(0, -20, 0)
+scale_min = 10.0
+scale_max = 15.0
+color = Color(0.388793, 0.243051, 0.160805, 1)
+
 [node name="TamperCutscene" type="Node2D"]
 script = ExtResource("1_rtjv2")
 
+[node name="FullTrain" type="Sprite2D" parent="."]
+position = Vector2(722, -80)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yk6e7")
+
 [node name="Opened" type="Sprite2D" parent="."]
+texture = ExtResource("2_rykbn")
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ser2e")
+
+[node name="Fire2" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_aflme")
 
 [node name="Bogey" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -115,3 +193,29 @@ sprite_frames = SubResource("SpriteFrames_vjh0i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+
+[node name="Sparks" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4djny")
+lifetime = 1.5
+
+[node name="Smoke" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_eb637")
+lifetime = 5.0
+
+[node name="WorkshopSounds" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_35vrs")
+
+[node name="WeldingSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_3ft27")
+
+[node name="SmallExplosion" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("20_aejtc")
