@@ -1,0 +1,203 @@
+[gd_scene load_steps=36 format=3 uid="uid://bmfw7heifutpa"]
+
+[ext_resource type="Texture2D" uid="uid://dmnqhpldbfbun" path="res://cutscenes/bogey/cs_wb_opening_01.png" id="1_dl0pp"]
+[ext_resource type="Script" path="res://cutscenes/bogey/tamper_cutscene.gd" id="1_rtjv2"]
+[ext_resource type="Texture2D" uid="uid://btrbax161s7uu" path="res://cutscenes/parallax/parallax_03_nearpier_red.png" id="2_ck4xg"]
+[ext_resource type="Texture2D" uid="uid://cit0po1r25gln" path="res://cutscenes/bogey/cs_wb_opening_02.png" id="2_lkn8w"]
+[ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="2_n8tig"]
+[ext_resource type="Texture2D" uid="uid://byf6ets5n2fn" path="res://cutscenes/bogey/cs_wb_background_openhatch.png" id="2_rykbn"]
+[ext_resource type="Texture2D" uid="uid://6i15lxpkmk1n" path="res://cutscenes/parallax/parallax_02_fulltrain.png" id="2_yk6e7"]
+[ext_resource type="Texture2D" uid="uid://b0fjiggfdfsru" path="res://cutscenes/bogey/cs_wb_opening_03.png" id="3_exa4f"]
+[ext_resource type="Texture2D" uid="uid://b5asvny4o5mnj" path="res://cutscenes/bogey/cs_wb_opening_04.png" id="4_ed56j"]
+[ext_resource type="Texture2D" uid="uid://yic57lgpk5dg" path="res://cutscenes/bogey/cs_wb_opening_05.png" id="5_8yl8r"]
+[ext_resource type="Texture2D" uid="uid://bp8qh3dkj355w" path="res://cutscenes/bogey/cs_wb_opening_06.png" id="6_6r8nk"]
+[ext_resource type="Texture2D" uid="uid://bbvh22a1o1kdt" path="res://cutscenes/bogey/cs_wb_opening_07.png" id="7_on82h"]
+[ext_resource type="Texture2D" uid="uid://bbhnclqp2ttss" path="res://cutscenes/bogey/cs_wb_opening_08.png" id="8_h3nt2"]
+[ext_resource type="Texture2D" uid="uid://bfnsvbixs2cul" path="res://cutscenes/bogey/cs_wb_opening_09.png" id="9_som7r"]
+[ext_resource type="Texture2D" uid="uid://ca127yg6acr1k" path="res://cutscenes/bogey/cs_wb_opening_10.png" id="10_pk3o7"]
+[ext_resource type="Texture2D" uid="uid://b0r55o2arnvdm" path="res://cutscenes/bogey/cs_wb_opening_11.png" id="11_hsabf"]
+[ext_resource type="Texture2D" uid="uid://coaur2wllysja" path="res://cutscenes/bogey/cs_wb_opening_12.png" id="12_2x54t"]
+[ext_resource type="Texture2D" uid="uid://ddier5bkkpeww" path="res://cutscenes/bogey/cs_wb_opening_13.png" id="13_plcfp"]
+[ext_resource type="Texture2D" uid="uid://duei6jr7tst60" path="res://cutscenes/bogey/cs_wb_smoke_1.png" id="14_7qnfp"]
+[ext_resource type="AudioStream" uid="uid://dpjvo7hiv0jpp" path="res://cutscenes/bogey/workshop_sound.wav" id="18_35vrs"]
+[ext_resource type="AudioStream" uid="uid://rb3gpacqbpbo" path="res://cutscenes/bogey/welding.wav" id="19_3ft27"]
+[ext_resource type="AudioStream" uid="uid://bhr530u3nvn3s" path="res://cutscenes/bogey/small_explosion.mp3" id="20_aejtc"]
+[ext_resource type="AudioStream" uid="uid://c1yf7klbpwd5f" path="res://cutscenes/bogey/fire.mp3" id="21_dtlxe"]
+[ext_resource type="Texture2D" uid="uid://c2fhw3d6yi4go" path="res://cutscenes/black_background.png" id="22_waikm"]
+
+[sub_resource type="Gradient" id="Gradient_j45jw"]
+offsets = PackedFloat32Array(0, 0.696721, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.557377, 0.557377, 0.557377, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h5pbd"]
+gradient = SubResource("Gradient_j45jw")
+
+[sub_resource type="Curve" id="Curve_c6xok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.572848, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ousjy"]
+curve = SubResource("Curve_c6xok")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ser2e"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -30, 0)
+scale_min = 1.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ousjy")
+color = Color(0.92549, 0, 0.164706, 1)
+color_ramp = SubResource("GradientTexture1D_h5pbd")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjh0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dl0pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lkn8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exa4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ed56j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8yl8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6r8nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_on82h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h3nt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_som7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pk3o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hsabf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2x54t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_plcfp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_7qnfp")
+}],
+"loop": true,
+"name": &"smoke_loop",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_midhu"]
+offsets = PackedFloat32Array(0, 0.672131, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.471311, 0.471311, 0.471311, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xk3o2"]
+gradient = SubResource("Gradient_midhu")
+
+[sub_resource type="Curve" id="Curve_0wqf4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.817881, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u4ckc"]
+curve = SubResource("Curve_0wqf4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4djny"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 0.9
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 24.19
+initial_velocity_max = 45.7
+gravity = Vector3(0, 50, 0)
+scale_curve = SubResource("CurveTexture_u4ckc")
+color = Color(1, 0.627451, 0, 1)
+color_ramp = SubResource("GradientTexture1D_xk3o2")
+
+[node name="TamperCutscene" type="Node2D"]
+script = ExtResource("1_rtjv2")
+
+[node name="Pier" type="Sprite2D" parent="."]
+position = Vector2(638, -348)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ck4xg")
+
+[node name="Tracks" type="Sprite2D" parent="."]
+position = Vector2(-132, -24)
+scale = Vector2(4, 4)
+texture = ExtResource("2_n8tig")
+
+[node name="FullTrain" type="Sprite2D" parent="."]
+position = Vector2(722, -80)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yk6e7")
+
+[node name="Opened" type="Sprite2D" parent="."]
+texture = ExtResource("2_rykbn")
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ser2e")
+
+[node name="Bogey" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_vjh0i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Sparks" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4djny")
+lifetime = 1.5
+
+[node name="WorkshopSounds" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_35vrs")
+
+[node name="WeldingSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_3ft27")
+
+[node name="SmallExplosion" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("20_aejtc")
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("21_dtlxe")
+volume_db = -10.0
+
+[node name="Fade" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(244, 138)
+texture = ExtResource("22_waikm")

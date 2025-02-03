@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://12laijih02kf"]
+
+[ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="1_e2e8b"]
+[ext_resource type="Script" path="res://cutscenes/parallax/parallax_cutscene.gd" id="1_mwkhl"]
+[ext_resource type="Texture2D" uid="uid://btrbax161s7uu" path="res://cutscenes/parallax/parallax_03_nearpier_red.png" id="1_ytbte"]
+[ext_resource type="Texture2D" uid="uid://8f6nisj8nq7j" path="res://cutscenes/parallax/parallax_03_nearpier_grn.png" id="2_0ac7r"]
+[ext_resource type="Texture2D" uid="uid://6i15lxpkmk1n" path="res://cutscenes/parallax/parallax_02_fulltrain.png" id="2_l55pk"]
+[ext_resource type="AudioStream" uid="uid://x0q3p4b6jnbw" path="res://cutscenes/parallax/tracks.wav" id="6_inxni"]
+[ext_resource type="AudioStream" uid="uid://d6lr7ago62gs" path="res://cutscenes/parallax/hydraulics.wav" id="6_nkti4"]
+[ext_resource type="AudioStream" uid="uid://bhxx8h78clgd0" path="res://cutscenes/parallax/engine.wav" id="7_d1hko"]
+[ext_resource type="AudioStream" uid="uid://bgepo5awerhvn" path="res://cutscenes/parallax/music.wav" id="9_0i80j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mka2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ytbte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0ac7r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ParallaxCutscene" type="Node2D"]
+script = ExtResource("1_mwkhl")
+
+[node name="Light" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1969, 98)
+sprite_frames = SubResource("SpriteFrames_mka2l")
+
+[node name="Track" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+repeat_size = Vector2(12, 0)
+
+[node name="Track" type="Sprite2D" parent="Track"]
+texture_repeat = 2
+position = Vector2(0, 200)
+texture = ExtResource("1_e2e8b")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 100)
+
+[node name="CutsceneCamera" type="Camera2D" parent="."]
+position = Vector2(1645, 138)
+zoom = Vector2(2.35, 2.35)
+
+[node name="Train" type="Sprite2D" parent="."]
+position = Vector2(2000, 165)
+texture = ExtResource("2_l55pk")
+
+[node name="Tracks" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_inxni")
+volume_db = -80.0
+
+[node name="Hydraulics" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_nkti4")
+volume_db = -7.0
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_d1hko")
+volume_db = -80.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_0i80j")
+volume_db = 5.0

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://map/train/train.gd" id="1_vb8sy"]
 [ext_resource type="AudioStream" uid="uid://lu2tmrongi23" path="res://map/train/train_passing.wav" id="2_g056x"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cq6p4"]
-size = Vector2(8, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seqye"]
+size = Vector2(6, 2)
 
 [sub_resource type="Curve2D" id="Curve2D_xn6in"]
 
@@ -26,7 +26,11 @@ loop = false
 
 [node name="MapIcon" type="Sprite2D" parent="CurrentTrack/MapRepresentation"]
 unique_name_in_owner = true
-texture = SubResource("PlaceholderTexture2D_cq6p4")
+
+[node name="Collision" type="Area2D" parent="CurrentTrack/MapRepresentation"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CurrentTrack/MapRepresentation/Collision"]
+shape = SubResource("RectangleShape2D_seqye")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
