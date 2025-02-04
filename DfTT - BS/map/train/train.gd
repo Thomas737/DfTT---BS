@@ -73,7 +73,7 @@ func setup_close_view(curve: Curve2D, outbound: bool, angle: float, account_inbo
 	if outbound:
 		distance_along = 779.0 + %MapRepresentation.progress_ratio * (1600.0-779.0)
 	else:
-		distance_along = 700.0 - (700.0-66*3)*(1-%MapRepresentation.progress_ratio)
+		distance_along = 800.0 - (800.0-66*3)*(1-%MapRepresentation.progress_ratio)
 	
 	
 	var relative_progress: int = -3

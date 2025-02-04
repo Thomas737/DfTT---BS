@@ -5,8 +5,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ohp7"]
 shader = ExtResource("1_vn3bo")
 shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/multiplier = -0.32
-shader_parameter/softness = 2.23
+shader_parameter/multiplier = 0.275
+shader_parameter/softness = 0.98
 
 [node name="Vignette" type="CanvasLayer"]
 

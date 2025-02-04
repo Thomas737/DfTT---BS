@@ -11,11 +11,16 @@ func _ready() -> void:
 	%ComputerStartup.play()
 	%ComputerStartup.finished.connect(%ComputerAmbience.play)
 	%ComputerStartup.finished.connect(_railway_ambience)
+	get_tree().create_timer(100).timeout.connect(_tension_music)
 
 func _railway_ambience() -> void:
 	%ModernRailway.play()
 	var timer: SceneTreeTimer = get_tree().create_timer(250+randf_range(-50, 50))
 	timer.timeout.connect(_railway_ambience)
+
+func _tension_music() -> void:
+	%Tension.play()
+	get_tree().create_timer(150).timeout.connect(_tension_music)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:

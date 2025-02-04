@@ -9,6 +9,9 @@ const water = Color(85.0/256, 106.0/256, 151.0/256)
 func _enter_tree() -> void:
 	RenderingServer.set_default_clear_color(water)
 
+func game_start() -> void:
+	get_tree().change_scene_to_file("res://map/map.tscn")
+
 func game_won(train: Train) -> void:
 	if train.player_train:
 		print("YOU WIN")

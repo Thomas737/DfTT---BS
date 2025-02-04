@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cltg5i15x734s"]
+[gd_scene load_steps=8 format=3 uid="uid://cltg5i15x734s"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_xg2jr"]
 [ext_resource type="Texture2D" uid="uid://bksuqxnyhyrow" path="res://menus/menu_art/dftt_sign.png" id="2_bmi8u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwhvyionfdjhb" path="res://menus/menu_art/button_play_highlighted.png" id="4_s1au6"]
 [ext_resource type="Texture2D" uid="uid://dd660wk8lgxnf" path="res://menus/menu_art/button_exit_normal.png" id="5_c47rw"]
 [ext_resource type="Texture2D" uid="uid://bgeim1c14gap4" path="res://menus/menu_art/button_exit_highlighted.png" id="6_7k1uj"]
+[ext_resource type="AudioStream" uid="uid://b2gv07ss1ajae" path="res://menus/main_theme.wav" id="7_iuxbg"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_xg2jr")
@@ -46,12 +47,9 @@ texture_normal = ExtResource("5_c47rw")
 texture_hover = ExtResource("6_7k1uj")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
-
-[node name="Button" type="Button" parent="."]
-offset_left = 43.0
-offset_top = 62.0
-offset_right = 443.0
-offset_bottom = 210.0
+unique_name_in_owner = true
+stream = ExtResource("7_iuxbg")
+volume_db = 5.0
 
 [connection signal="pressed" from="CenterContainer/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/Control/Exit" to="." method="_on_exit_pressed"]

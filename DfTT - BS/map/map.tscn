@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://drw3lfnwfe8ea"]
+[gd_scene load_steps=32 format=3 uid="uid://drw3lfnwfe8ea"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
 [ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://befgrenk5giax" path="res://menus/menu_art/button_controls_normal.png" id="21_uy7jt"]
 [ext_resource type="Texture2D" uid="uid://dmxi305i8nvsu" path="res://menus/menu_art/button_controls_highlighted.png" id="22_3gdw0"]
 [ext_resource type="Texture2D" uid="uid://b4rsp6qbxoil8" path="res://menus/menu_art/dftt_letter_controls.png" id="23_2chxi"]
+[ext_resource type="AudioStream" uid="uid://bu87owutw2odd" path="res://background_audio/tension_music.wav" id="28_1wf8t"]
 [ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="28_yfwla"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mljc5"]
@@ -186,6 +187,11 @@ volume_db = -10.0
 [node name="ModernRailway" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("18_sxegg")
+
+[node name="Tension" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("28_1wf8t")
+volume_db = 5.0
 
 [node name="Vignette" parent="." instance=ExtResource("28_yfwla")]
 

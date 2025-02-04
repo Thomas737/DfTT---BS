@@ -53,8 +53,8 @@ func setup_railways(grid_map: Dictionary) -> void:
 	setup_vertical_routes(grid_map)
 	
 	connect_along_path(grid_map[Vector2(width/2, 0)], grid_map[Vector2(width/2, -8)], grid_map)
-	var starting_tile: Tile = grid_map[Vector2(width/2, -8)]
-	player_starting_switch = starting_tile.switch_handler.create_new_starting_switch(Vector2(width/2, -9))
+	var starting_tile: Tile = grid_map[Vector2(width/2, -3)]
+	player_starting_switch = starting_tile.switch_handler.create_new_starting_switch(Vector2(width/2, -4))
 
 func setup_terrain(grid_map: Dictionary) -> void:
 	for location: Vector2 in grid_map:
