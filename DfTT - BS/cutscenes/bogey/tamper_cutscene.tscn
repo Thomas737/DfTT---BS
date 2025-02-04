@@ -181,10 +181,12 @@ lifetime = 1.5
 [node name="WorkshopSounds" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("18_35vrs")
+volume_db = -5.0
 
 [node name="WeldingSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("19_3ft27")
+volume_db = -10.0
 
 [node name="SmallExplosion" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

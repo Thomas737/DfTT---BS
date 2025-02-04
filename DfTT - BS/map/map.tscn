@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://drw3lfnwfe8ea"]
+[gd_scene load_steps=31 format=3 uid="uid://drw3lfnwfe8ea"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
 [ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://befgrenk5giax" path="res://menus/menu_art/button_controls_normal.png" id="21_uy7jt"]
 [ext_resource type="Texture2D" uid="uid://dmxi305i8nvsu" path="res://menus/menu_art/button_controls_highlighted.png" id="22_3gdw0"]
 [ext_resource type="Texture2D" uid="uid://b4rsp6qbxoil8" path="res://menus/menu_art/dftt_letter_controls.png" id="23_2chxi"]
+[ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="28_yfwla"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mljc5"]
 noise_type = 3
@@ -90,10 +91,12 @@ cargo_train = ExtResource("14_5xoee")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
+layer = 101
 visible = false
 script = ExtResource("15_kcvli")
 
 [node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,13 +105,17 @@ grow_vertical = 2
 
 [node name="PauseScreen" type="Control" parent="PauseMenu/CenterContainer"]
 unique_name_in_owner = true
+process_mode = 2
+visible = false
 layout_mode = 2
 
 [node name="Letter" type="Sprite2D" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("16_6tmjy")
 
 [node name="Continue" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
 layout_mode = 0
 offset_left = -125.0
 offset_right = 105.0
@@ -118,6 +125,7 @@ texture_normal = ExtResource("17_3nkrp")
 texture_hover = ExtResource("18_sfe47")
 
 [node name="Exit" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
 layout_mode = 0
 offset_left = 10.0
 offset_right = 240.0
@@ -127,6 +135,7 @@ texture_normal = ExtResource("19_d0m45")
 texture_hover = ExtResource("20_ndf8j")
 
 [node name="Controls" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
 layout_mode = 0
 offset_left = -58.0
 offset_top = 50.0
@@ -138,14 +147,16 @@ texture_hover = ExtResource("22_3gdw0")
 
 [node name="ControlsScreen" type="Control" parent="PauseMenu/CenterContainer"]
 unique_name_in_owner = true
-visible = false
+process_mode = 2
 layout_mode = 2
 
 [node name="Letter" type="Sprite2D" parent="PauseMenu/CenterContainer/ControlsScreen"]
+process_mode = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("23_2chxi")
 
 [node name="ExitControls" type="TextureButton" parent="PauseMenu/CenterContainer/ControlsScreen"]
+process_mode = 2
 layout_mode = 0
 offset_left = -58.0
 offset_top = 120.0
@@ -156,7 +167,8 @@ texture_normal = ExtResource("19_d0m45")
 texture_hover = ExtResource("20_ndf8j")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(502, 356)
+process_mode = 3
+position = Vector2(378, -30)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("8_k8whm")
@@ -174,6 +186,8 @@ volume_db = -10.0
 [node name="ModernRailway" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("18_sxegg")
+
+[node name="Vignette" parent="." instance=ExtResource("28_yfwla")]
 
 [connection signal="pressed" from="PauseMenu/CenterContainer/PauseScreen/Continue" to="PauseMenu" method="_on_continue"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/PauseScreen/Exit" to="PauseMenu" method="_on_exit"]

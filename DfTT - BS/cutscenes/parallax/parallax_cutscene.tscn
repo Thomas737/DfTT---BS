@@ -1,10 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://12laijih02kf"]
+[gd_scene load_steps=19 format=3 uid="uid://12laijih02kf"]
 
 [ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="1_e2e8b"]
 [ext_resource type="Script" path="res://cutscenes/parallax/parallax_cutscene.gd" id="1_mwkhl"]
 [ext_resource type="Texture2D" uid="uid://btrbax161s7uu" path="res://cutscenes/parallax/parallax_03_nearpier_red.png" id="1_ytbte"]
 [ext_resource type="Texture2D" uid="uid://8f6nisj8nq7j" path="res://cutscenes/parallax/parallax_03_nearpier_grn.png" id="2_0ac7r"]
+[ext_resource type="Texture2D" uid="uid://bqfn6bix1qv4q" path="res://cutscenes/parallax/ground.png" id="2_jykso"]
 [ext_resource type="Texture2D" uid="uid://6i15lxpkmk1n" path="res://cutscenes/parallax/parallax_02_fulltrain.png" id="2_l55pk"]
+[ext_resource type="Texture2D" uid="uid://boe0gk2wnredx" path="res://cutscenes/parallax/parallax_05_water.png" id="3_i7yfo"]
+[ext_resource type="Texture2D" uid="uid://c6a8v4pcpsdp6" path="res://cutscenes/parallax/foreground_clouds.png" id="3_xgy2d"]
+[ext_resource type="Texture2D" uid="uid://bo8ngslnbfvbf" path="res://cutscenes/parallax/far_clouds.png" id="4_tulko"]
+[ext_resource type="Texture2D" uid="uid://ut4k8uue8y1n" path="res://cutscenes/parallax/parallax_04_farpier.png" id="4_wnbxd"]
+[ext_resource type="Texture2D" uid="uid://bdg3v108injfr" path="res://cutscenes/parallax/foreground_grass.png" id="5_a3lxy"]
+[ext_resource type="Texture2D" uid="uid://b2c1yti4v5shb" path="res://cutscenes/parallax/background_tree.png" id="6_7oqvl"]
 [ext_resource type="AudioStream" uid="uid://x0q3p4b6jnbw" path="res://cutscenes/parallax/tracks.wav" id="6_inxni"]
 [ext_resource type="AudioStream" uid="uid://d6lr7ago62gs" path="res://cutscenes/parallax/hydraulics.wav" id="6_nkti4"]
 [ext_resource type="AudioStream" uid="uid://bhxx8h78clgd0" path="res://cutscenes/parallax/engine.wav" id="7_d1hko"]
@@ -24,13 +31,83 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfabj"]
+particle_flag_disable_z = true
+direction = Vector3(1, -0.5, 0)
+spread = 20.73
+initial_velocity_min = 50.73
+initial_velocity_max = 72.24
+gravity = Vector3(0, 30, 0)
+color = Color(1, 0.816333, 0.42, 1)
+
 [node name="ParallaxCutscene" type="Node2D"]
 script = ExtResource("1_mwkhl")
 
-[node name="Light" type="AnimatedSprite2D" parent="."]
+[node name="CloseClouds" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+repeat_size = Vector2(518.8, 0)
+repeat_times = 3
+
+[node name="Clouds" type="Sprite2D" parent="CloseClouds"]
+texture_repeat = 2
+position = Vector2(567.44, 144.8)
+scale = Vector2(1.38, 1.38)
+texture = ExtResource("3_xgy2d")
+region_enabled = true
+region_rect = Rect2(0, 0, 376, 220)
+
+[node name="FargroundClouds" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+repeat_size = Vector2(518.8, 0)
+repeat_times = 3
+
+[node name="Clouds" type="Sprite2D" parent="FargroundClouds"]
+texture_repeat = 2
+position = Vector2(567.44, 139.8)
+scale = Vector2(1.38, 1.38)
+texture = ExtResource("4_tulko")
+region_enabled = true
+region_rect = Rect2(0, 0, 376, 117)
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(1645.5, 250)
+scale = Vector2(519, 90)
+texture = ExtResource("2_jykso")
+
+[node name="Terrain" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(943, 238)
+
+[node name="Close" type="Parallax2D" parent="Terrain"]
+unique_name_in_owner = true
+scroll_offset = Vector2(-308, -22)
+repeat_size = Vector2(376, 0)
+repeat_times = 5
+
+[node name="Ground" type="Sprite2D" parent="Terrain/Close"]
+position = Vector2(-7, 22)
+texture = ExtResource("5_a3lxy")
+
+[node name="Far" type="Parallax2D" parent="Terrain"]
+unique_name_in_owner = true
+repeat_size = Vector2(1000, 0)
+repeat_times = 2
+
+[node name="Tree" type="Sprite2D" parent="Terrain/Far"]
+position = Vector2(-855, -139)
+texture = ExtResource("6_7oqvl")
+
+[node name="Pier" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Light" type="AnimatedSprite2D" parent="Pier"]
 unique_name_in_owner = true
 position = Vector2(1969, 98)
 sprite_frames = SubResource("SpriteFrames_mka2l")
+
+[node name="Tanks" type="Sprite2D" parent="Pier"]
+position = Vector2(782, 137)
+texture = ExtResource("4_wnbxd")
 
 [node name="Track" type="Parallax2D" parent="."]
 unique_name_in_owner = true
@@ -42,6 +119,11 @@ position = Vector2(0, 200)
 texture = ExtResource("1_e2e8b")
 region_enabled = true
 region_rect = Rect2(0, 0, 5000, 100)
+
+[node name="Water" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(974, 183)
+texture = ExtResource("3_i7yfo")
 
 [node name="CutsceneCamera" type="Camera2D" parent="."]
 position = Vector2(1645, 138)
@@ -70,3 +152,49 @@ volume_db = -80.0
 unique_name_in_owner = true
 stream = ExtResource("9_0i80j")
 volume_db = 5.0
+
+[node name="WheelSparks" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1640, 157)
+
+[node name="Front1" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(-102, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true
+
+[node name="Front2" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(-66, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true
+
+[node name="Front3" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(61, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true
+
+[node name="Front4" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(97, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true
+
+[node name="Second1" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(159, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true
+
+[node name="Second2" type="GPUParticles2D" parent="WheelSparks"]
+position = Vector2(195, 37)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_tfabj")
+one_shot = true

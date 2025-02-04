@@ -47,5 +47,11 @@ texture_hover = ExtResource("6_7k1uj")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 
+[node name="Button" type="Button" parent="."]
+offset_left = 43.0
+offset_top = 62.0
+offset_right = 443.0
+offset_bottom = 210.0
+
 [connection signal="pressed" from="CenterContainer/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/Control/Exit" to="." method="_on_exit_pressed"]

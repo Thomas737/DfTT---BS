@@ -98,6 +98,10 @@ flip_h = true
 unique_name_in_owner = true
 curve = SubResource("Curve2D_iiwp1")
 
+[node name="PathFollow2D" type="PathFollow2D" parent="Straight/StraightPath"]
+position = Vector2(-326.059, 0)
+progress = 634.942
+
 [node name="MechanicalSwitch" type="Node2D" parent="."]
 position = Vector2(-220, -21)
 scale = Vector2(2, 2)

@@ -19,8 +19,6 @@ func _ready() -> void:
 	new_train.train_resource = player_train
 	new_train.player_train = true
 	add_child(new_train)
-	random_create_train()
-	random_create_train()
 
 func random_create_train() -> void:
 	var new_train: Train = train_preload.instantiate()

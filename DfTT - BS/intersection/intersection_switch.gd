@@ -23,8 +23,7 @@ func setup_switch(_switch: Switch) -> void:
 	
 	await ready
 	for train: Train in switch.inbound_trains:
-		var timer: SceneTreeTimer = get_tree().create_timer(train.timing_adjustment+1.5-train.get_map_representation().progress_ratio*1.7)
-		timer.timeout.connect(train.setup_close_view.bind(%StraightPath.curve, false, switch.rotation, train.get_map_representation().progress_ratio))
+		train.setup_close_view(%StraightPath.curve, false, switch.rotation)
 	for train: Train in switch.outbound_trains:
 		var outbound_direction: int = switch.get_outbound_direction()
 		if outbound_direction == 0:
@@ -45,7 +44,6 @@ func _await_new_train() -> void:
 	pass
 
 func _new_train(train: Train) -> void:
-	await get_tree().create_timer(train.timing_adjustment+2.5).timeout
 	train.setup_close_view(%StraightPath.curve, false, switch.rotation)
 
 func _new_outbound(train: Train, outbound_direction: int) -> void:

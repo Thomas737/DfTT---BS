@@ -17,6 +17,7 @@ func game_won(train: Train) -> void:
 		train.fade_and_delete()
 
 func train_lost(train: Train) -> void:
+	train.fade_and_delete()
 	lost_trains += 1
 	print("TRAIN LOST")
 

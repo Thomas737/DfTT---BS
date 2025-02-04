@@ -28,11 +28,15 @@ loop = false
 unique_name_in_owner = true
 
 [node name="Collision" type="Area2D" parent="CurrentTrack/MapRepresentation"]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CurrentTrack/MapRepresentation/Collision"]
 shape = SubResource("RectangleShape2D_seqye")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -47,6 +51,7 @@ layout_mode = 2
 [node name="CurrentIntersection" type="Path2D" parent="CanvasLayer/CenterContainer/Control"]
 unique_name_in_owner = true
 visible = false
+z_index = 100
 curve = SubResource("Curve2D_xn6in")
 
 [node name="Engine" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
@@ -90,3 +95,5 @@ loop = false
 unique_name_in_owner = true
 rotation = 1.5708
 texture = SubResource("PlaceholderTexture2D_f3r3g")
+
+[connection signal="area_entered" from="CurrentTrack/MapRepresentation/Collision" to="." method="_on_collision_area_entered"]

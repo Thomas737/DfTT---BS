@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	
 	%MapRepresentation.progress += train_resource.speed * delta
 	for carriage in carriage_path_followers:
-		carriage.progress += train_resource.speed * delta * 40
+		carriage.progress += train_resource.speed * delta * 20
 	if carriage_path_followers[2].progress_ratio == 1:
 		%TrainPassing.stop()
 		%CurrentIntersection.curve = null
@@ -71,13 +71,14 @@ func setup_close_view(curve: Curve2D, outbound: bool, angle: float, account_inbo
 	
 	var distance_along: float = 0.0
 	if outbound:
-		distance_along = 779.0 + %MapRepresentation.progress_ratio * (1200.0-779.0)
-	elif account_inbound_progress:
-		distance_along = account_inbound_progress * 260
+		distance_along = 779.0 + %MapRepresentation.progress_ratio * (1600.0-779.0)
+	else:
+		distance_along = 700.0 - (700.0-66*3)*(1-%MapRepresentation.progress_ratio)
 	
-	var relative_progress: int = 0
+	
+	var relative_progress: int = -3
 	for carriage in carriage_path_followers:
-		carriage.progress = relative_progress * carriage_offsets + distance_along
+		carriage.progress = max(0, relative_progress * carriage_offsets + distance_along)
 		relative_progress += 1
 
 func get_map_representation() -> PathFollow2D:
@@ -94,3 +95,8 @@ func set_view(value: int) -> void:
 		%CurrentTrack.show()
 	else:
 		%CurrentTrack.hide()
+
+func _on_collision_area_entered(area: Area2D) -> void:
+	fade_and_delete()
+	if player_train:
+		Global.game_lost(self)

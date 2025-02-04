@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_mtaom")
-speed = 10.0
+speed = 3.0
 map_texture = ExtResource("3_c62sn")
 engine = ExtResource("1_a0t0i")
 carriage = ExtResource("1_hugem")
