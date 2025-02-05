@@ -1,0 +1,215 @@
+[gd_scene load_steps=24 format=3 uid="uid://djkyokmc7x43m"]
+
+[ext_resource type="Texture2D" uid="uid://ch648wm7axpu6" path="res://map/districts/pier_layer.png" id="1_ag6of"]
+[ext_resource type="Script" path="res://cutscenes/game_won/game_won.gd" id="1_ya7yu"]
+[ext_resource type="Texture2D" uid="uid://by5h2lwvwhc0q" path="res://map/tile/art/straight_white.png" id="2_ueaus"]
+[ext_resource type="Texture2D" uid="uid://8x5u06quvi18" path="res://map/tile/art/stub.png" id="3_uxcs4"]
+[ext_resource type="Texture2D" uid="uid://dprjxsioxwqdr" path="res://map/train/map_icons/train_icon1.png" id="4_ige05"]
+[ext_resource type="Texture2D" uid="uid://6i15lxpkmk1n" path="res://cutscenes/parallax/parallax_02_fulltrain.png" id="6_0phnu"]
+[ext_resource type="Texture2D" uid="uid://c6a8v4pcpsdp6" path="res://cutscenes/parallax/foreground_clouds.png" id="6_610ad"]
+[ext_resource type="AudioStream" uid="uid://x0q3p4b6jnbw" path="res://cutscenes/parallax/tracks.wav" id="6_pxqrn"]
+[ext_resource type="AudioStream" uid="uid://bhxx8h78clgd0" path="res://cutscenes/parallax/engine.wav" id="7_jaeyh"]
+[ext_resource type="Texture2D" uid="uid://bo8ngslnbfvbf" path="res://cutscenes/parallax/far_clouds.png" id="7_yaldc"]
+[ext_resource type="Texture2D" uid="uid://boe0gk2wnredx" path="res://cutscenes/parallax/parallax_05_water.png" id="7_yc2xv"]
+[ext_resource type="Texture2D" uid="uid://d0brokut0omse" path="res://cutscenes/parallax/water_mask.png" id="10_7smsg"]
+[ext_resource type="AudioStream" uid="uid://b1v67fuhfv4d0" path="res://cutscenes/game_won/splash_sound.wav" id="13_j5v3j"]
+[ext_resource type="Texture2D" uid="uid://c2fhw3d6yi4go" path="res://cutscenes/black_background.png" id="14_fqnky"]
+[ext_resource type="Texture2D" uid="uid://drhswjnis303r" path="res://cutscenes/parallax/dftt_sign.png" id="15_43rup"]
+[ext_resource type="Texture2D" uid="uid://ddmg11hro2ts8" path="res://cutscenes/game_won/dftt_letter_win.png" id="16_wyo2o"]
+[ext_resource type="FontFile" uid="uid://d0xeog2im3hmu" path="res://cutscenes/fs-tahoma-8px.otf" id="17_7gdc1"]
+[ext_resource type="Texture2D" uid="uid://btdj68fqyjq6x" path="res://cutscenes/game_won/dftt_letter_credits.png" id="17_tnibk"]
+[ext_resource type="Texture2D" uid="uid://rogel5fm6fbm" path="res://cutscenes/spacepopup.png" id="18_3b60s"]
+[ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="20_m04yt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5s3o7"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.8
+spread = 180.0
+initial_velocity_min = 10.76
+initial_velocity_max = 14.16
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8xu2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector3(1, -0.5, 0)
+spread = 20.0
+initial_velocity_min = 42.95
+initial_velocity_max = 66.8
+gravity = Vector3(0, 10, 0)
+
+[sub_resource type="Theme" id="Theme_3vers"]
+default_font = ExtResource("17_7gdc1")
+default_font_size = 45
+
+[node name="GameWon" type="Node2D"]
+script = ExtResource("1_ya7yu")
+
+[node name="TopDown" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="PierLayer" type="Sprite2D" parent="TopDown"]
+texture = ExtResource("1_ag6of")
+
+[node name="TopDownCam" type="Camera2D" parent="TopDown"]
+unique_name_in_owner = true
+position = Vector2(-65, -48)
+zoom = Vector2(7, 7)
+position_smoothing_enabled = true
+
+[node name="StraightWhite" type="Sprite2D" parent="TopDown"]
+position = Vector2(-80, -48)
+rotation = 1.5708
+texture = ExtResource("2_ueaus")
+
+[node name="Stub" type="Sprite2D" parent="TopDown/StraightWhite"]
+rotation = 3.14159
+texture = ExtResource("3_uxcs4")
+
+[node name="TrainIcon" type="Sprite2D" parent="TopDown"]
+unique_name_in_owner = true
+position = Vector2(43, -48)
+texture = ExtResource("4_ige05")
+
+[node name="Tracks" type="AudioStreamPlayer2D" parent="TopDown/TrainIcon"]
+unique_name_in_owner = true
+stream = ExtResource("6_pxqrn")
+volume_db = -15.0
+
+[node name="Splash" type="GPUParticles2D" parent="TopDown/TrainIcon"]
+unique_name_in_owner = true
+show_behind_parent = true
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_5s3o7")
+lifetime = 0.5
+one_shot = true
+
+[node name="Engine" type="AudioStreamPlayer2D" parent="TopDown/TrainIcon"]
+unique_name_in_owner = true
+stream = ExtResource("7_jaeyh")
+volume_db = -12.0
+
+[node name="SideOn" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CloseClouds" type="Parallax2D" parent="SideOn"]
+unique_name_in_owner = true
+repeat_size = Vector2(739.955, 0)
+repeat_times = 3
+
+[node name="ForegroundClouds" type="Sprite2D" parent="SideOn/CloseClouds"]
+position = Vector2(-16, -81)
+scale = Vector2(2, 2)
+texture = ExtResource("6_610ad")
+
+[node name="FarClouds" type="Parallax2D" parent="SideOn"]
+unique_name_in_owner = true
+repeat_size = Vector2(739.955, 0)
+repeat_times = 3
+
+[node name="FarClouds" type="Sprite2D" parent="SideOn/FarClouds"]
+position = Vector2(-7, -78)
+scale = Vector2(2, 2)
+texture = ExtResource("7_yaldc")
+
+[node name="Parallax05Water" type="Sprite2D" parent="SideOn"]
+position = Vector2(300, -33)
+texture = ExtResource("7_yc2xv")
+
+[node name="Train" type="Sprite2D" parent="SideOn"]
+unique_name_in_owner = true
+position = Vector2(173, -1)
+texture = ExtResource("6_0phnu")
+
+[node name="WaterMask" type="Sprite2D" parent="SideOn"]
+modulate = Color(1, 1, 1, 0.592157)
+position = Vector2(53, 178)
+scale = Vector2(111.25, 40.75)
+texture = ExtResource("10_7smsg")
+
+[node name="SideSplash1" type="GPUParticles2D" parent="SideOn"]
+unique_name_in_owner = true
+position = Vector2(-322, 15)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_r8xu2")
+
+[node name="SideSplash2" type="GPUParticles2D" parent="SideOn"]
+unique_name_in_owner = true
+position = Vector2(-32, 12)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_r8xu2")
+
+[node name="SideSplash3" type="GPUParticles2D" parent="SideOn"]
+unique_name_in_owner = true
+position = Vector2(207, 13)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_r8xu2")
+
+[node name="SideOnCam" type="Camera2D" parent="SideOn"]
+unique_name_in_owner = true
+position = Vector2(3, -78)
+zoom = Vector2(1.5, 1.5)
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_j5v3j")
+volume_db = -20.0
+
+[node name="Cover" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-0.999969, -76)
+scale = Vector2(950, 586)
+texture = ExtResource("14_fqnky")
+
+[node name="DfttSign" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(3, -78)
+texture = ExtResource("15_43rup")
+
+[node name="DfttLetterWin" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(3, -78)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("16_wyo2o")
+
+[node name="Score" type="RichTextLabel" parent="DfttLetterWin"]
+unique_name_in_owner = true
+offset_left = -252.0
+offset_top = 275.0
+offset_right = 185.0
+offset_bottom = 317.0
+theme = SubResource("Theme_3vers")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Station Score: "
+
+[node name="Crashes" type="RichTextLabel" parent="DfttLetterWin"]
+unique_name_in_owner = true
+offset_left = -252.0
+offset_top = 325.0
+offset_right = 185.0
+offset_bottom = 368.0
+theme = SubResource("Theme_3vers")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Crashes: "
+
+[node name="DfttLetterCredits" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(3, -101)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("17_tnibk")
+
+[node name="Spacepopup" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(3, 104.59)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("18_3b60s")
+
+[node name="Vignette" parent="." instance=ExtResource("20_m04yt")]

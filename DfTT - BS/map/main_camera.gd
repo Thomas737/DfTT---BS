@@ -1,7 +1,13 @@
 class_name MainCamera
 extends Camera2D
 
-@export var tutorial_camera: bool = false
+var tutorial_camera: bool = true:
+	set(new_state):
+		if tutorial_camera and not new_state:
+			_leave_tutorial()
+		tutorial_camera = new_state
+var ready_for_intersection: bool = false
+var initial_position: Vector2 = position
 
 const camera_TL = Vector2(-576, -324)
 const camera_BR = Vector2(576, 324)
@@ -10,6 +16,34 @@ const limit_TL = Vector2(-500, -160)
 const limit_BR = Vector2(900, 900)
 
 const target_zoom = Vector2.ONE * 2
+
+func _ready() -> void:
+	await get_tree().create_timer(5).timeout
+	get_tree().create_tween().tween_property(self, "zoom", %PierTarget.zoom, 1).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(2).timeout
+	position = %PierTarget.position
+	await get_tree().create_timer(10).timeout
+	position = initial_position
+	get_tree().create_timer(8).timeout.connect(_blink_bridge_failed)
+	await get_tree().create_timer(8).timeout
+	%BridgeExplosion.emitting = true
+	%BridgeExplosionSound.play()
+	%TempBridge.hide()
+	ready_for_intersection = true
+	get_tree().create_tween().tween_property(%DfttLetterTutorials, "modulate", Color(1,1,1,1), 2)
+	position_smoothing_speed = 5
+
+func _blink_bridge_failed() -> void:
+	for blink in range(10):
+		await get_tree().create_timer(0.5).timeout
+		%BridgeFailed.hide()
+		await get_tree().create_timer(0.5).timeout
+		%BridgeFailed.show()
+
+func _leave_tutorial() -> void:
+	get_tree().create_tween().tween_property(self, "zoom", Vector2(2,2), 1).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(10).timeout
+	get_tree().create_tween().tween_property(%DfttLetterTutorials, "modulate", Color(0,0,0,0), 2)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if tutorial_camera:

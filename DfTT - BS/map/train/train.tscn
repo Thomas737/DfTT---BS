@@ -1,7 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dipn655nljrdb"]
+[gd_scene load_steps=14 format=3 uid="uid://dipn655nljrdb"]
 
 [ext_resource type="Script" path="res://map/train/train.gd" id="1_vb8sy"]
 [ext_resource type="AudioStream" uid="uid://lu2tmrongi23" path="res://map/train/train_passing.wav" id="2_g056x"]
+[ext_resource type="Texture2D" uid="uid://depu2gyll88vw" path="res://map/train/steam_clouds/steamcloud0.png" id="2_jev56"]
+[ext_resource type="Texture2D" uid="uid://d2qyy2uw4h561" path="res://map/train/steam_clouds/steamcloud1.png" id="3_y51m1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3dxtl"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 0.95
+initial_velocity_max = 1.55
+gravity = Vector3(0, 0, 0)
+color = Color(0.821789, 0.821789, 0.821789, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_seqye"]
 size = Vector2(6, 2)
@@ -10,6 +20,37 @@ size = Vector2(6, 2)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3r3g"]
 size = Vector2(20, 61)
+
+[sub_resource type="Curve" id="Curve_0ucy6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 0.989011), 0.0, 0.0, 0, 0, Vector2(1, 0.285714), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mhekr"]
+curve = SubResource("Curve_0ucy6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0efeu"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.5
+initial_velocity_max = 22.75
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mhekr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_idprh"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.5
+initial_velocity_max = 22.75
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mhekr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_558cs"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.5
+initial_velocity_max = 22.75
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mhekr")
 
 [node name="Train" type="Node2D"]
 top_level = true
@@ -26,6 +67,11 @@ loop = false
 
 [node name="MapIcon" type="Sprite2D" parent="CurrentTrack/MapRepresentation"]
 unique_name_in_owner = true
+
+[node name="SmallSteam" type="GPUParticles2D" parent="CurrentTrack/MapRepresentation"]
+unique_name_in_owner = true
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_3dxtl")
 
 [node name="Collision" type="Area2D" parent="CurrentTrack/MapRepresentation"]
 unique_name_in_owner = true
@@ -53,15 +99,6 @@ unique_name_in_owner = true
 visible = false
 z_index = 100
 curve = SubResource("Curve2D_xn6in")
-
-[node name="Engine" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
-unique_name_in_owner = true
-loop = false
-
-[node name="EngineSprite" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
-unique_name_in_owner = true
-rotation = 1.5708
-texture = SubResource("PlaceholderTexture2D_f3r3g")
 
 [node name="Carriage" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
 unique_name_in_owner = true
@@ -95,5 +132,31 @@ loop = false
 unique_name_in_owner = true
 rotation = 1.5708
 texture = SubResource("PlaceholderTexture2D_f3r3g")
+
+[node name="Engine" type="PathFollow2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection"]
+unique_name_in_owner = true
+loop = false
+
+[node name="EngineSprite" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
+unique_name_in_owner = true
+rotation = 1.5708
+
+[node name="Steam" type="GPUParticles2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
+unique_name_in_owner = true
+position = Vector2(-18, 0)
+process_material = SubResource("ParticleProcessMaterial_0efeu")
+texture = ExtResource("2_jev56")
+
+[node name="Steam2" type="GPUParticles2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
+unique_name_in_owner = true
+position = Vector2(-18, 0)
+process_material = SubResource("ParticleProcessMaterial_idprh")
+texture = ExtResource("3_y51m1")
+
+[node name="Steam3" type="GPUParticles2D" parent="CanvasLayer/CenterContainer/Control/CurrentIntersection/Engine"]
+unique_name_in_owner = true
+position = Vector2(-18, 0)
+process_material = SubResource("ParticleProcessMaterial_558cs")
+texture = ExtResource("2_jev56")
 
 [connection signal="area_entered" from="CurrentTrack/MapRepresentation/Collision" to="." method="_on_collision_area_entered"]

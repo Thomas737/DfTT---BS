@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxbmdpdsbbgw4"]
+
+[ext_resource type="Script" path="res://cutscenes/game_lost/game_lost.gd" id="1_80bbd"]
+[ext_resource type="Texture2D" uid="uid://c2fhw3d6yi4go" path="res://cutscenes/black_background.png" id="1_k15k1"]
+[ext_resource type="Texture2D" uid="uid://chgemgtbbrc8v" path="res://cutscenes/game_lost/dftt_letter_fail.png" id="2_gfvpm"]
+[ext_resource type="Texture2D" uid="uid://rogel5fm6fbm" path="res://cutscenes/spacepopup.png" id="4_fikjc"]
+[ext_resource type="AudioStream" uid="uid://dhocpqv8kutsu" path="res://cutscenes/parallax/train_explosion.mp3" id="5_fy6te"]
+
+[node name="GameLost" type="CanvasLayer"]
+script = ExtResource("1_80bbd")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(579.5, 328.5)
+scale = Vector2(1235, 701)
+texture = ExtResource("1_k15k1")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="DfttLetterFail" type="Sprite2D" parent="CenterContainer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -34)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_gfvpm")
+
+[node name="Spacepopup" type="Sprite2D" parent="CenterContainer/Control"]
+unique_name_in_owner = true
+position = Vector2(0, 280)
+texture = ExtResource("4_fikjc")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_fy6te")
+volume_db = -10.0

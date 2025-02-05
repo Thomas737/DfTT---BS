@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://12laijih02kf"]
+[gd_scene load_steps=28 format=3 uid="uid://12laijih02kf"]
 
 [ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="1_e2e8b"]
 [ext_resource type="Script" path="res://cutscenes/parallax/parallax_cutscene.gd" id="1_mwkhl"]
@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://c6a8v4pcpsdp6" path="res://cutscenes/parallax/foreground_clouds.png" id="3_xgy2d"]
 [ext_resource type="Texture2D" uid="uid://bo8ngslnbfvbf" path="res://cutscenes/parallax/far_clouds.png" id="4_tulko"]
 [ext_resource type="Texture2D" uid="uid://ut4k8uue8y1n" path="res://cutscenes/parallax/parallax_04_farpier.png" id="4_wnbxd"]
+[ext_resource type="Texture2D" uid="uid://b41jt6q4noooj" path="res://cutscenes/parallax/far_city.png" id="5_6e07p"]
 [ext_resource type="Texture2D" uid="uid://bdg3v108injfr" path="res://cutscenes/parallax/foreground_grass.png" id="5_a3lxy"]
 [ext_resource type="Texture2D" uid="uid://b2c1yti4v5shb" path="res://cutscenes/parallax/background_tree.png" id="6_7oqvl"]
+[ext_resource type="Texture2D" uid="uid://d1mjkjvdwjjyv" path="res://cutscenes/parallax/close_city.png" id="6_c3obw"]
 [ext_resource type="AudioStream" uid="uid://x0q3p4b6jnbw" path="res://cutscenes/parallax/tracks.wav" id="6_inxni"]
 [ext_resource type="AudioStream" uid="uid://d6lr7ago62gs" path="res://cutscenes/parallax/hydraulics.wav" id="6_nkti4"]
 [ext_resource type="AudioStream" uid="uid://bhxx8h78clgd0" path="res://cutscenes/parallax/engine.wav" id="7_d1hko"]
@@ -19,8 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="17_5x8c5"]
 [ext_resource type="AudioStream" uid="uid://dhocpqv8kutsu" path="res://cutscenes/parallax/train_explosion.mp3" id="17_ehim1"]
 [ext_resource type="Texture2D" uid="uid://c2fhw3d6yi4go" path="res://cutscenes/black_background.png" id="18_nd0x3"]
-[ext_resource type="Texture2D" uid="uid://drhswjnis303r" path="res://cutscenes/dftt_sign.png" id="20_awydh"]
-[ext_resource type="Texture2D" uid="uid://xp0mux8nvci7" path="res://cutscenes/dftt_letter.png" id="21_j012w"]
+[ext_resource type="Texture2D" uid="uid://drhswjnis303r" path="res://cutscenes/parallax/dftt_sign.png" id="20_awydh"]
+[ext_resource type="Texture2D" uid="uid://dyqxbxbrkl1en" path="res://cutscenes/parallax/alert_brakes.png" id="21_1twmb"]
+[ext_resource type="Texture2D" uid="uid://xp0mux8nvci7" path="res://cutscenes/parallax/dftt_letter.png" id="21_j012w"]
 [ext_resource type="Texture2D" uid="uid://rogel5fm6fbm" path="res://cutscenes/spacepopup.png" id="22_2kd8l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mka2l"]
@@ -83,6 +86,24 @@ texture = ExtResource("2_jykso")
 [node name="Terrain" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(943, 238)
+
+[node name="FarCity" type="Parallax2D" parent="Terrain"]
+unique_name_in_owner = true
+repeat_size = Vector2(1500, 0)
+repeat_times = 3
+
+[node name="City" type="Sprite2D" parent="Terrain/FarCity"]
+position = Vector2(-2019, -134)
+texture = ExtResource("5_6e07p")
+
+[node name="CloseCity" type="Parallax2D" parent="Terrain"]
+unique_name_in_owner = true
+repeat_size = Vector2(1200, 0)
+repeat_times = 3
+
+[node name="CloseCity" type="Sprite2D" parent="Terrain/CloseCity"]
+position = Vector2(-1280, -135)
+texture = ExtResource("6_c3obw")
 
 [node name="Close" type="Parallax2D" parent="Terrain"]
 unique_name_in_owner = true
@@ -208,6 +229,13 @@ one_shot = true
 
 [node name="Vignette" parent="." instance=ExtResource("17_5x8c5")]
 
+[node name="AlertBrakes" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(1643, 73.28)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("21_1twmb")
+
 [node name="BlackBackground" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -231,18 +259,13 @@ texture = ExtResource("20_awydh")
 [node name="DfttLetter" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-position = Vector2(1645, 138)
-scale = Vector2(0.2, 0.2)
+position = Vector2(1645, 123.245)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_j012w")
-
-[node name="Target" type="Camera2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(1672, 226)
-zoom = Vector2(3, 3)
 
 [node name="Spacepopup" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
-position = Vector2(1669, 314)
+position = Vector2(1643, 254.82)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("22_2kd8l")

@@ -26,6 +26,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("select") and mouse_on_handle:
 			handle_selected = true
+			%Clack.play()
 		if event.is_action_released("select"):
 			handle_selected = false
 			on_handle_released()

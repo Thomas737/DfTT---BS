@@ -1,0 +1,282 @@
+[gd_scene load_steps=40 format=3 uid="uid://drw3lfnwfe8ea"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_4dur2"]
+[ext_resource type="Script" path="res://map/tile_generator.gd" id="1_35g61"]
+[ext_resource type="Script" path="res://map/train/train_handler.gd" id="2_w3pa2"]
+[ext_resource type="Script" path="res://map/intersection_handler.gd" id="3_omnd1"]
+[ext_resource type="Resource" uid="uid://dp4b38lhi108c" path="res://map/districts/city_tiles/city1.tres" id="3_tla2h"]
+[ext_resource type="Resource" uid="uid://bkycv3px6o04q" path="res://map/districts/city_tiles/city2.tres" id="4_kmtqp"]
+[ext_resource type="Resource" uid="uid://beugh7wjiyjit" path="res://map/districts/forest_tiles/forest.tres" id="4_rnonm"]
+[ext_resource type="Resource" uid="uid://d2jdeu165je8w" path="res://map/districts/rural_tiles/rural.tres" id="5_7juao"]
+[ext_resource type="Resource" uid="uid://buy1ap54ep584" path="res://map/districts/city_tiles/city3.tres" id="5_ritnm"]
+[ext_resource type="Resource" uid="uid://c6kkdf14hidde" path="res://map/train/player_train.tres" id="7_lj5s6"]
+[ext_resource type="Texture2D" uid="uid://ch648wm7axpu6" path="res://map/districts/pier_layer.png" id="8_1andf"]
+[ext_resource type="Script" path="res://map/river_handler.gd" id="8_d4taf"]
+[ext_resource type="Script" path="res://map/main_camera.gd" id="8_k8whm"]
+[ext_resource type="Resource" uid="uid://byn4vhtorrro5" path="res://map/districts/beach_tiles/beach.tres" id="8_m3a40"]
+[ext_resource type="Resource" uid="uid://brpwpcpj01lvr" path="res://map/train/cargo_train.tres" id="14_5xoee"]
+[ext_resource type="Script" path="res://map/pause_menu.gd" id="15_kcvli"]
+[ext_resource type="Texture2D" uid="uid://csc1ht1tkw5qo" path="res://menus/menu_art/dftt_letter_pause.png" id="16_6tmjy"]
+[ext_resource type="AudioStream" uid="uid://cjlsnxky0plrs" path="res://background_audio/computer_startup.wav" id="16_hj667"]
+[ext_resource type="Texture2D" uid="uid://btvuihhkbn1ws" path="res://menus/menu_art/button_continue_normal.png" id="17_3nkrp"]
+[ext_resource type="AudioStream" uid="uid://b7e2c2wddndts" path="res://background_audio/continuous_computer.wav" id="17_m4q1x"]
+[ext_resource type="Texture2D" uid="uid://6u1b05yumkb1" path="res://menus/menu_art/button_continue_highlighted.png" id="18_sfe47"]
+[ext_resource type="AudioStream" uid="uid://bwt1r1m3usyas" path="res://background_audio/modern_railway.wav" id="18_sxegg"]
+[ext_resource type="Texture2D" uid="uid://dd660wk8lgxnf" path="res://menus/menu_art/button_exit_normal.png" id="19_d0m45"]
+[ext_resource type="Texture2D" uid="uid://bgeim1c14gap4" path="res://menus/menu_art/button_exit_highlighted.png" id="20_ndf8j"]
+[ext_resource type="Texture2D" uid="uid://befgrenk5giax" path="res://menus/menu_art/button_controls_normal.png" id="21_uy7jt"]
+[ext_resource type="Texture2D" uid="uid://dmxi305i8nvsu" path="res://menus/menu_art/button_controls_highlighted.png" id="22_3gdw0"]
+[ext_resource type="Texture2D" uid="uid://b4rsp6qbxoil8" path="res://menus/menu_art/dftt_letter_controls.png" id="23_2chxi"]
+[ext_resource type="AudioStream" uid="uid://bu87owutw2odd" path="res://background_audio/tension_music.wav" id="28_1wf8t"]
+[ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="28_yfwla"]
+[ext_resource type="Texture2D" uid="uid://dwbncuuekgudk" path="res://cutscenes/map/pier_small_arrow.png" id="29_scyf2"]
+[ext_resource type="Texture2D" uid="uid://bdtnevynw0bs" path="res://cutscenes/map/dftt_letter_tutorials.png" id="30_aubqo"]
+[ext_resource type="Texture2D" uid="uid://frgycw5vxdgw" path="res://cutscenes/map/hq_star.png" id="30_vuwa6"]
+[ext_resource type="Texture2D" uid="uid://xg2y11204cfi" path="res://cutscenes/map/bridge_failed.png" id="33_rl8df"]
+[ext_resource type="AudioStream" uid="uid://bb6ohwboauk87" path="res://cutscenes/map/bridge_explosion.mp3" id="34_yqt37"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mljc5"]
+noise_type = 3
+frequency = 0.0795
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1c7q6"]
+noise_type = 3
+frequency = 0.2035
+
+[sub_resource type="Gradient" id="Gradient_ogk4b"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bn3h2"]
+gradient = SubResource("Gradient_ogk4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0bdpj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 10.75
+initial_velocity_max = 21.5
+gravity = Vector3(0, 0, 0)
+color = Color(0.95, 0.56525, 0.095, 1)
+color_ramp = SubResource("GradientTexture1D_bn3h2")
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("intersection_handler", "tile_generator", "train_handler", "river_handler", "pause_menu")]
+script = ExtResource("1_4dur2")
+intersection_handler = NodePath("IntersectionHandler")
+tile_generator = NodePath("Tiles")
+train_handler = NodePath("Trains")
+river_handler = NodePath("RiverHandler")
+pause_menu = NodePath("PauseMenu")
+
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("intersection_handler", "train_handler", "river_handler")]
+script = ExtResource("1_35g61")
+intersection_handler = NodePath("../IntersectionHandler")
+train_handler = NodePath("../Trains")
+river_handler = NodePath("../RiverHandler")
+city1 = ExtResource("3_tla2h")
+city2 = ExtResource("4_kmtqp")
+city3 = ExtResource("5_ritnm")
+forest_district = ExtResource("4_rnonm")
+rural_district = ExtResource("5_7juao")
+beach_district = ExtResource("8_m3a40")
+city_noise = SubResource("FastNoiseLite_mljc5")
+rural_noise = SubResource("FastNoiseLite_1c7q6")
+
+[node name="Pier" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-224, 48)
+texture = ExtResource("8_1andf")
+
+[node name="RiverHandler" type="Node2D" parent="."]
+script = ExtResource("8_d4taf")
+
+[node name="IntersectionHandler" type="CanvasLayer" parent="."]
+script = ExtResource("3_omnd1")
+
+[node name="CenterContainer" type="CenterContainer" parent="IntersectionHandler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="IntersectionHandler/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Trains" type="Node2D" parent="." node_paths=PackedStringArray("tile_generator", "intersection_handler", "main_camera")]
+script = ExtResource("2_w3pa2")
+tile_generator = NodePath("../Tiles")
+intersection_handler = NodePath("../IntersectionHandler")
+main_camera = NodePath("../MainCamera")
+player_train = ExtResource("7_lj5s6")
+cargo_train = ExtResource("14_5xoee")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 101
+visible = false
+script = ExtResource("15_kcvli")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseScreen" type="Control" parent="PauseMenu/CenterContainer"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 2
+
+[node name="Letter" type="Sprite2D" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_6tmjy")
+
+[node name="Continue" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
+layout_mode = 0
+offset_left = -125.0
+offset_right = 105.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("17_3nkrp")
+texture_hover = ExtResource("18_sfe47")
+
+[node name="Exit" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
+layout_mode = 0
+offset_left = 10.0
+offset_right = 240.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("19_d0m45")
+texture_hover = ExtResource("20_ndf8j")
+
+[node name="Controls" type="TextureButton" parent="PauseMenu/CenterContainer/PauseScreen"]
+process_mode = 2
+layout_mode = 0
+offset_left = -58.0
+offset_top = 50.0
+offset_right = 172.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("21_uy7jt")
+texture_hover = ExtResource("22_3gdw0")
+
+[node name="ControlsScreen" type="Control" parent="PauseMenu/CenterContainer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 2
+
+[node name="Letter" type="Sprite2D" parent="PauseMenu/CenterContainer/ControlsScreen"]
+process_mode = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_2chxi")
+
+[node name="ExitControls" type="TextureButton" parent="PauseMenu/CenterContainer/ControlsScreen"]
+process_mode = 2
+layout_mode = 0
+offset_left = -58.0
+offset_top = 120.0
+offset_right = 172.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("19_d0m45")
+texture_hover = ExtResource("20_ndf8j")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(406, -12)
+zoom = Vector2(8, 8)
+position_smoothing_enabled = true
+position_smoothing_speed = 0.8
+script = ExtResource("8_k8whm")
+
+[node name="PierTarget" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-213, 48)
+zoom = Vector2(5, 5)
+
+[node name="ComputerStartup" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_hj667")
+volume_db = -10.0
+
+[node name="ComputerAmbience" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("17_m4q1x")
+volume_db = -10.0
+
+[node name="ModernRailway" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_sxegg")
+
+[node name="Tension" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("28_1wf8t")
+volume_db = 5.0
+
+[node name="PierSmallArrow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-213, 48)
+rotation = -3.14159
+texture = ExtResource("29_scyf2")
+
+[node name="HqStar" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(969, 25)
+texture = ExtResource("30_vuwa6")
+
+[node name="Vignette" parent="." instance=ExtResource("28_yfwla")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="DfttLetterTutorials" type="Sprite2D" parent="CanvasLayer/CenterContainer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(355, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_aubqo")
+
+[node name="BridgeFailed" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(352, 0)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("33_rl8df")
+
+[node name="BridgeExplosion" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(352, 0)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_0bdpj")
+lifetime = 0.6
+one_shot = true
+
+[node name="BridgeExplosionSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("34_yqt37")
+volume_db = -15.0
+
+[connection signal="pressed" from="PauseMenu/CenterContainer/PauseScreen/Continue" to="PauseMenu" method="_on_continue"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/PauseScreen/Exit" to="PauseMenu" method="_on_exit"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/PauseScreen/Controls" to="PauseMenu" method="_on_controls"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/ControlsScreen/ExitControls" to="PauseMenu" method="_on_exit_controls"]

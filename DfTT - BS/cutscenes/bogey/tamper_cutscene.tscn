@@ -191,11 +191,12 @@ volume_db = -10.0
 [node name="SmallExplosion" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("20_aejtc")
+volume_db = -10.0
 
 [node name="FireSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("21_dtlxe")
-volume_db = -10.0
+volume_db = -13.0
 
 [node name="Fade" type="Sprite2D" parent="."]
 unique_name_in_owner = true

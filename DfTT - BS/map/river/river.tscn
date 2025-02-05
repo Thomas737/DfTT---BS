@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://oa44da5mn2tk"]
+[gd_scene load_steps=8 format=3 uid="uid://oa44da5mn2tk"]
 
 [ext_resource type="Script" path="res://map/river/river.gd" id="1_v12yd"]
 [ext_resource type="Texture2D" uid="uid://cj1p1ymso6ihd" path="res://map/river/river_straight.png" id="2_ipvtw"]
 [ext_resource type="Texture2D" uid="uid://dtlku3mxw00sr" path="res://map/river/river_curve.png" id="3_bj01x"]
 [ext_resource type="Texture2D" uid="uid://bpirfg8ylus8u" path="res://map/river/river_bridge.png" id="4_o6oqp"]
+[ext_resource type="Texture2D" uid="uid://dlhxy3mixm8k0" path="res://map/river/river_bridge_steam.png" id="5_rs2g6"]
+[ext_resource type="Texture2D" uid="uid://c2iu4qivctvo1" path="res://map/river/river_curve_steam.png" id="6_mw5ar"]
+[ext_resource type="Texture2D" uid="uid://cxrvedhl0ypd8" path="res://map/river/river_straight_steam.png" id="7_s2lmm"]
 
 [node name="River" type="Node2D"]
 script = ExtResource("1_v12yd")
@@ -28,3 +31,24 @@ texture = ExtResource("3_bj01x")
 unique_name_in_owner = true
 visible = false
 texture = ExtResource("4_o6oqp")
+
+[node name="CrossingSteam" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("5_rs2g6")
+
+[node name="LeftSteam" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("6_mw5ar")
+
+[node name="StraightSteam" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("7_s2lmm")
+
+[node name="RightSteam" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+rotation = 1.5708
+texture = ExtResource("6_mw5ar")

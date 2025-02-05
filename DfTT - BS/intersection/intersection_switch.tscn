@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bdpbb6rvhsolo"]
+[gd_scene load_steps=13 format=4 uid="uid://bdpbb6rvhsolo"]
 
 [ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
 [ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/straight_rail.png" id="3_3g06u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://intersection/mechanical_switch.gd" id="4_ram1v"]
 [ext_resource type="Texture2D" uid="uid://bscg82q61871" path="res://intersection/switch_handle.png" id="5_hyp7m"]
 [ext_resource type="Texture2D" uid="uid://dowcmvq57i5yd" path="res://intersection/switch_base.png" id="6_lncr4"]
+[ext_resource type="AudioStream" uid="uid://bnj38ti2j1oay" path="res://intersection/clack.mp3" id="7_lasw7"]
 
 [sub_resource type="Curve2D" id="Curve2D_oxpc0"]
 _data = {
@@ -39,18 +40,9 @@ mechanical_switch = NodePath("MechanicalSwitch")
 [node name="Left" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="LeftTurn" type="Sprite2D" parent="Left"]
-texture = ExtResource("3_3m7hx")
-flip_h = true
-
 [node name="Prestraight" type="Sprite2D" parent="Left"]
-position = Vector2(-577, 0)
+position = Vector2(-769.495, 0)
 rotation = 1.5708
-texture = ExtResource("3_3g06u")
-flip_h = true
-
-[node name="PostStraight" type="Sprite2D" parent="Left"]
-position = Vector2(0, -576)
 texture = ExtResource("3_3g06u")
 flip_h = true
 
@@ -65,17 +57,6 @@ unique_name_in_owner = true
 rotation = -3.14159
 texture = ExtResource("3_3m7hx")
 
-[node name="PostStraight" type="Sprite2D" parent="Right"]
-position = Vector2(0, 575)
-texture = ExtResource("3_3g06u")
-flip_h = true
-
-[node name="Prestraight" type="Sprite2D" parent="Right"]
-position = Vector2(-564, 0)
-rotation = 1.5708
-texture = ExtResource("3_3g06u")
-flip_h = true
-
 [node name="RightPath" type="Path2D" parent="Right"]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_hguyf")
@@ -84,12 +65,7 @@ curve = SubResource("Curve2D_hguyf")
 unique_name_in_owner = true
 
 [node name="StraightRail" type="Sprite2D" parent="Straight"]
-rotation = 1.5708
-texture = ExtResource("3_3g06u")
-flip_h = true
-
-[node name="StraightRail2" type="Sprite2D" parent="Straight"]
-position = Vector2(745, 0)
+position = Vector2(-577.52, 0)
 rotation = 1.5708
 texture = ExtResource("3_3g06u")
 flip_h = true
@@ -123,6 +99,12 @@ texture = ExtResource("6_lncr4")
 [node name="Snap" type="AudioStreamPlayer2D" parent="MechanicalSwitch"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamWAV_c00eo")
+volume_db = -10.0
+
+[node name="Clack" type="AudioStreamPlayer2D" parent="MechanicalSwitch"]
+unique_name_in_owner = true
+stream = ExtResource("7_lasw7")
+volume_db = 5.0
 
 [connection signal="mouse_entered" from="MechanicalSwitch/Handle/Area2D" to="MechanicalSwitch" method="_mouse_entered_handle"]
 [connection signal="mouse_exited" from="MechanicalSwitch/Handle/Area2D" to="MechanicalSwitch" method="_mouse_exited_handle"]

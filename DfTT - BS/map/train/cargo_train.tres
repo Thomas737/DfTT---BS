@@ -1,13 +1,19 @@
-[gd_resource type="Resource" script_class="TrainResource" load_steps=5 format=3 uid="uid://brpwpcpj01lvr"]
+[gd_resource type="Resource" script_class="TrainResource" load_steps=8 format=3 uid="uid://brpwpcpj01lvr"]
 
 [ext_resource type="Texture2D" uid="uid://bwojahqet6r62" path="res://map/train/Container_Modern.png" id="1_7qpda"]
 [ext_resource type="Script" path="res://map/train/train_resource.gd" id="1_aaewx"]
+[ext_resource type="Texture2D" uid="uid://8ni6whgh8vbv" path="res://map/train/container_steam.png" id="1_feufg"]
+[ext_resource type="Texture2D" uid="uid://dhxou0rtbqlg4" path="res://map/train/loco_steam.png" id="2_2rjt8"]
 [ext_resource type="Texture2D" uid="uid://bet2obhbi25ob" path="res://map/train/Loco_Modern2.png" id="2_o64dn"]
 [ext_resource type="Texture2D" uid="uid://cet4408ki2eor" path="res://map/train/map_icons/train_icon0.png" id="3_rfrbw"]
+[ext_resource type="Texture2D" uid="uid://bug5cjhvr2hei" path="res://map/train/train_icon_other_steam.png.png" id="3_ut70l"]
 
 [resource]
 script = ExtResource("1_aaewx")
-speed = 2.0
+speed = 5.0
 map_texture = ExtResource("3_rfrbw")
 engine = ExtResource("2_o64dn")
 carriage = ExtResource("1_7qpda")
+alternate_engine = ExtResource("2_2rjt8")
+alternate_mapmode = ExtResource("3_ut70l")
+alternate_carriage = ExtResource("1_feufg")

@@ -20,6 +20,8 @@ func _random_sparks() -> void:
 func _process(delta: float) -> void:
 	%CloseClouds.scroll_offset.x += track_speed * delta * 0.15
 	%FargroundClouds.scroll_offset.x += track_speed * delta * 0.1
+	%FarCity.scroll_offset.x += track_speed * delta * 0.25
+	%CloseCity.scroll_offset.x += track_speed * delta * 0.35
 	%Far.scroll_offset.x += track_speed * delta * 0.5
 	%Pier.scroll_offset.x += track_speed * delta * 0.8
 	%Track.scroll_offset.x += track_speed * delta
@@ -42,6 +44,7 @@ func _brakes_failed() -> void:
 	get_tree().create_tween().tween_property(%Tracks, "pitch_scale", 1.5, 10)
 	get_tree().create_tween().tween_property(self, "track_speed", 500, 20).set_trans(Tween.TRANS_QUAD)
 	get_tree().create_timer(74.5-55).timeout.connect(_cutscene_end)
+	%AlertBrakes.show()
 
 func _cutscene_end() -> void:
 	%BlackBackground.show()
@@ -58,8 +61,6 @@ func _letter() -> void:
 	await get_tree().create_timer(4).timeout
 	%DfttLetter.show()
 	%DfttSign.hide()
-	%CutsceneCamera.position = %Target.position
-	get_tree().create_tween().tween_property(%CutsceneCamera, "zoom", %Target.zoom, 1).set_trans(Tween.TRANS_CUBIC)
 	await get_tree().create_timer(10).timeout
 	get_tree().create_tween().tween_property(%Spacepopup, "modulate", Color(1, 1, 1, 1), 0.1)
 	cutscene_complete = true

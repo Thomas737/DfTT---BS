@@ -1,15 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://cltg5i15x734s"]
+[gd_scene load_steps=12 format=3 uid="uid://cltg5i15x734s"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_xg2jr"]
+[ext_resource type="Texture2D" uid="uid://dndp6yj16tt6u" path="res://menus/menu_art/main_menu.png" id="2_68wkw"]
 [ext_resource type="Texture2D" uid="uid://bksuqxnyhyrow" path="res://menus/menu_art/dftt_sign.png" id="2_bmi8u"]
 [ext_resource type="Texture2D" uid="uid://yjbgnx1crpho" path="res://menus/menu_art/button_play_normal.png" id="3_cg48h"]
 [ext_resource type="Texture2D" uid="uid://bwhvyionfdjhb" path="res://menus/menu_art/button_play_highlighted.png" id="4_s1au6"]
 [ext_resource type="Texture2D" uid="uid://dd660wk8lgxnf" path="res://menus/menu_art/button_exit_normal.png" id="5_c47rw"]
 [ext_resource type="Texture2D" uid="uid://bgeim1c14gap4" path="res://menus/menu_art/button_exit_highlighted.png" id="6_7k1uj"]
 [ext_resource type="AudioStream" uid="uid://b2gv07ss1ajae" path="res://menus/main_theme.wav" id="7_iuxbg"]
+[ext_resource type="PackedScene" uid="uid://b8m6a66q4b8od" path="res://vignette.tscn" id="9_iqbrx"]
 
-[node name="MainMenu" type="CanvasLayer"]
+[sub_resource type="Theme" id="Theme_hyi1k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaumf"]
+bg_color = Color(0.92549, 0.901961, 0.87451, 1)
+
+[node name="MainMenu" type="Node2D"]
 script = ExtResource("1_xg2jr")
+
+[node name="Vignette" parent="." instance=ExtResource("9_iqbrx")]
+layer = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -20,6 +30,10 @@ grow_vertical = 2
 
 [node name="Control" type="Control" parent="CenterContainer"]
 layout_mode = 2
+
+[node name="MainMenu" type="Sprite2D" parent="CenterContainer/Control"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_68wkw")
 
 [node name="Sign" type="Sprite2D" parent="CenterContainer/Control"]
 position = Vector2(0, -150)
@@ -46,10 +60,35 @@ scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("5_c47rw")
 texture_hover = ExtResource("6_7k1uj")
 
+[node name="PlayCutTut" type="TextureButton" parent="CenterContainer/Control"]
+offset_left = -57.0
+offset_top = -92.0
+offset_right = 173.0
+offset_bottom = -22.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_cg48h")
+texture_hover = ExtResource("4_s1au6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Control"]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -53.0
+offset_right = 173.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_hyi1k")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gaumf")
+bbcode_enabled = true
+text = "[center]Includes all cutscenes and tutorial - recommended for all first time players"
+
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_iuxbg")
 volume_db = 5.0
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="pressed" from="CenterContainer/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/Control/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/Control/PlayCutTut" to="." method="_on_play_with_cutscenes_pressed"]

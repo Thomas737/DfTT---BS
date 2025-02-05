@@ -2,7 +2,6 @@ class_name PauseMenu
 extends CanvasLayer
 
 func _on_continue() -> void:
-	print("here_continue")
 	hide()
 	get_tree().paused = false
 

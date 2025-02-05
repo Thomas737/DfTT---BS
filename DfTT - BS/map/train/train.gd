@@ -1,6 +1,8 @@
 class_name Train
 extends Node2D
 
+signal on_destroyed
+
 const carriage_offsets = 66
 
 @onready var carriage_path_followers: Array[PathFollow2D] = [%Carriage3, %Carriage2, %Carriage, %Engine]
@@ -8,6 +10,7 @@ const carriage_offsets = 66
 var close_view: bool
 
 var train_resource: TrainResource
+var modern: bool = true
 
 var current_switch: Switch = null
 var previous_switch: Switch = null
@@ -23,6 +26,10 @@ func _ready() -> void:
 	map_icon.texture = train_resource.map_texture
 
 func _process(delta: float) -> void:
+	%Steam.emitting = not modern
+	%Steam2.emitting = not modern
+	%Steam3.emitting = not modern
+	%SmallSteam.emitting = not modern
 	if %MapRepresentation.progress_ratio >= 1 or not %CurrentTrack.curve:
 		get_next_track()
 	
@@ -35,6 +42,24 @@ func _process(delta: float) -> void:
 	
 	if %Carriage2.progress_ratio > 0 and not %TrainPassing.playing:
 		%TrainPassing.play(0)
+
+func set_new_period(new_period: bool) -> void:
+	modern = new_period
+	if new_period:
+		%EngineSprite.texture = train_resource.engine
+		%MapIcon.texture = train_resource.map_texture
+	if not new_period:
+		%EngineSprite.texture = train_resource.alternate_engine
+		%MapIcon.texture = train_resource.alternate_mapmode
+	
+	if new_period and not player_train:
+		%CarriageSprite.texture = train_resource.carriage
+		%CarriageSprite2.texture = train_resource.carriage
+		%CarriageSprite3.texture = train_resource.carriage
+	if not new_period and not player_train:
+		%CarriageSprite.texture = train_resource.alternate_carriage
+		%CarriageSprite2.texture = train_resource.alternate_carriage
+		%CarriageSprite3.texture = train_resource.alternate_carriage
 
 func get_next_track() -> void:
 	if previous_switch:
@@ -52,7 +77,7 @@ func get_next_track() -> void:
 		if player_train:
 			Global.game_lost(self)
 			return
-		fade_and_delete()
+		Global.train_reached_station(self, previous_switch.on_tile)
 		return
 	current_switch.inbound_trains.append(self)
 	current_switch.new_train.emit(self)
@@ -62,7 +87,7 @@ func fade_and_delete() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), 0.5).set_trans(Tween.TRANS_LINEAR)
 	tween.finished.connect(queue_free)
-	tween.finished.connect(Global.train_lost.bind(self))
+	on_destroyed.emit()
 
 func setup_close_view(curve: Curve2D, outbound: bool, angle: float, account_inbound_progress: float = 0) -> void:
 	%CurrentIntersection.show()
@@ -97,6 +122,7 @@ func set_view(value: int) -> void:
 		%CurrentTrack.hide()
 
 func _on_collision_area_entered(area: Area2D) -> void:
-	fade_and_delete()
 	if player_train:
 		Global.game_lost(self)
+		return
+	Global.train_lost(self)

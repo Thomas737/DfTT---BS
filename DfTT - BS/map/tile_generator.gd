@@ -11,6 +11,9 @@ const height = 24
 @export var river_handler: RiverHandler
 
 @export_category("Districts")
+@export var new_to_old: Dictionary
+var old_to_new: Dictionary
+
 @export var city1: DistrictResource
 @export var city2: DistrictResource
 @export var city3: DistrictResource
@@ -26,6 +29,9 @@ var starting_switches: Array[Switch]
 var player_starting_switch: Switch
 
 func _ready() -> void:
+	for key: DistrictResource in new_to_old:
+		old_to_new[new_to_old[key]] = key
+	
 	city_noise.seed = randi()
 	
 	var grid_map: Dictionary = setup_grid_map()
@@ -34,6 +40,24 @@ func _ready() -> void:
 	
 	for tile: Tile in grid_map.values():
 		add_child(tile)
+
+func set_new_period(new_period: bool) -> void:
+	var grid_map: Dictionary = {}
+	
+	for tile: Tile in get_children():
+		grid_map[tile.grid_position] = tile
+	
+	for location: Vector2 in grid_map:
+		var tile: Tile = grid_map[location]
+		var right_tile: Tile = grid_map.get(location+Vector2.RIGHT)
+		var right_district: DistrictResource = null
+		if right_tile:
+			right_district = right_tile.district
+		
+		if new_period:
+			tile.set_district(old_to_new.get(tile.district), right_district)
+		else:
+			tile.set_district(new_to_old.get(tile.district), right_district)
 
 func setup_grid_map() -> Dictionary:
 	var grid_map: Dictionary = {}
@@ -52,9 +76,9 @@ func setup_railways(grid_map: Dictionary) -> void:
 	setup_edge_railway(grid_map)
 	setup_vertical_routes(grid_map)
 	
-	connect_along_path(grid_map[Vector2(width/2, 0)], grid_map[Vector2(width/2, -8)], grid_map)
-	var starting_tile: Tile = grid_map[Vector2(width/2, -3)]
-	player_starting_switch = starting_tile.switch_handler.create_new_starting_switch(Vector2(width/2, -4))
+	connect_along_path(grid_map[Vector2(width/2, 0)], grid_map[Vector2(width/2, -10)], grid_map)
+	var starting_tile: Tile = grid_map[Vector2(width/2, -10)]
+	player_starting_switch = starting_tile.switch_handler.create_new_starting_switch(Vector2(width/2, -11))
 
 func setup_terrain(grid_map: Dictionary) -> void:
 	for location: Vector2 in grid_map:
@@ -87,6 +111,8 @@ func setup_terrain(grid_map: Dictionary) -> void:
 func setup_edge_railway(grid_map: Dictionary) -> void:
 	for y: int in [0, height-1]:
 		for x: int in range(width-1):
+			if y == 0 and x == 10:
+				continue
 			connect_switches(grid_map[Vector2(x, y)], grid_map[Vector2(x+1, y)])
 	
 	for x in range(-10, 0):
@@ -174,8 +200,15 @@ func check_connected_tiles(first_tile: Tile, second_tile: Tile) -> bool:
 	return first_tile in second_tile.connected_tiles
 
 func _intersection_display_requested(tile: Tile) -> void:
+	if not %MainCamera.ready_for_intersection:
+		return
+	
 	intersection_handler.generate_intersection(tile)
 	train_handler.intersection_view()
 	river_handler.hide()
 	%Pier.hide()
 	hide()
+	%PierSmallArrow.hide()
+	%HqStar.hide()
+	%BridgeFailed.hide()
+	%MainCamera.tutorial_camera = false
