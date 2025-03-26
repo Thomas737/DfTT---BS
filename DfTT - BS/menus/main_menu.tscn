@@ -61,6 +61,7 @@ texture_normal = ExtResource("5_c47rw")
 texture_hover = ExtResource("6_7k1uj")
 
 [node name="PlayCutTut" type="TextureButton" parent="CenterContainer/Control"]
+layout_mode = 0
 offset_left = -57.0
 offset_top = -92.0
 offset_right = 173.0

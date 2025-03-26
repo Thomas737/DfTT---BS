@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://brpb2ujnrs0ep"]
+
+[ext_resource type="Script" uid="uid://c07kbn2iafeb6" path="res://bogey.gd" id="1_j16po"]
+
+[sub_resource type="Curve2D" id="Curve2D_j16po"]
+
+[node name="Bogey" type="Node2D"]
+script = ExtResource("1_j16po")
+
+[node name="Path" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_j16po")
+
+[node name="Follower" type="PathFollow2D" parent="Path"]
+unique_name_in_owner = true
+
+[node name="BogeySprite" type="Sprite2D" parent="Path/Follower"]
