@@ -83,9 +83,9 @@ unique_name_in_owner = true
 show_behind_parent = true
 emitting = false
 amount = 80
-process_material = SubResource("ParticleProcessMaterial_5s3o7")
 lifetime = 0.5
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_5s3o7")
 
 [node name="Engine" type="AudioStreamPlayer2D" parent="TopDown/TrainIcon"]
 unique_name_in_owner = true
