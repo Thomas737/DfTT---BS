@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DistrictResource" load_steps=6 format=3 uid="uid://dpk6nb7hhy0jc"]
 
-[ext_resource type="Script" path="res://map/district_resource.gd" id="1_vudaa"]
+[ext_resource type="Script" uid="uid://cjauaagu0o3ig" path="res://map/district_resource.gd" id="1_vudaa"]
 [ext_resource type="Texture2D" uid="uid://cd2lc512s8q8p" path="res://map/old_districts/city_steam/city_2_1_steam.png" id="2_eqwyd"]
 [ext_resource type="Texture2D" uid="uid://dbm2aemy80lxi" path="res://map/old_districts/city_steam/city_2_2_steam.png" id="3_gnnqt"]
 [ext_resource type="Texture2D" uid="uid://yk2x2g21yl2g" path="res://map/old_districts/city_steam/city_2_3_steam.png" id="4_l5q1o"]

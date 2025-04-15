@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://22ipbjeg0kg2" path="res://map/train/Loco_Modern.png" id="1_a0t0i"]
 [ext_resource type="Texture2D" uid="uid://drc5t32kw38i6" path="res://map/train/Tanker_Modern.png" id="1_hugem"]
-[ext_resource type="Script" path="res://map/train/train_resource.gd" id="1_mtaom"]
+[ext_resource type="Script" uid="uid://bosfkg014ceae" path="res://map/train/train_resource.gd" id="1_mtaom"]
 [ext_resource type="Texture2D" uid="uid://dhxou0rtbqlg4" path="res://map/train/loco_steam.png" id="1_qh2vm"]
 [ext_resource type="Texture2D" uid="uid://1555jwpwg2pn" path="res://map/train/train_icon_main_steam.png" id="2_npw8a"]
 [ext_resource type="Texture2D" uid="uid://dwyriqviaijn7" path="res://map/train/map_icons/train_icon3.png" id="3_c62sn"]

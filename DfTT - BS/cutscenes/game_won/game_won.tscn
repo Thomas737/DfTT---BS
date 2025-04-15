@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://djkyokmc7x43m"]
 
 [ext_resource type="Texture2D" uid="uid://ch648wm7axpu6" path="res://map/districts/pier_layer.png" id="1_ag6of"]
-[ext_resource type="Script" path="res://cutscenes/game_won/game_won.gd" id="1_ya7yu"]
+[ext_resource type="Script" uid="uid://m1gqkyoca5ya" path="res://cutscenes/game_won/game_won.gd" id="1_ya7yu"]
 [ext_resource type="Texture2D" uid="uid://by5h2lwvwhc0q" path="res://map/tile/art/straight_white.png" id="2_ueaus"]
 [ext_resource type="Texture2D" uid="uid://8x5u06quvi18" path="res://map/tile/art/stub.png" id="3_uxcs4"]
 [ext_resource type="Texture2D" uid="uid://dprjxsioxwqdr" path="res://map/train/map_icons/train_icon1.png" id="4_ige05"]

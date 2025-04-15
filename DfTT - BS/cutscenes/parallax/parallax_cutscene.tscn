@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://12laijih02kf"]
 
 [ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="1_e2e8b"]
-[ext_resource type="Script" path="res://cutscenes/parallax/parallax_cutscene.gd" id="1_mwkhl"]
+[ext_resource type="Script" uid="uid://bk67gcplgciip" path="res://cutscenes/parallax/parallax_cutscene.gd" id="1_mwkhl"]
 [ext_resource type="Texture2D" uid="uid://btrbax161s7uu" path="res://cutscenes/parallax/parallax_03_nearpier_red.png" id="1_ytbte"]
 [ext_resource type="Texture2D" uid="uid://8f6nisj8nq7j" path="res://cutscenes/parallax/parallax_03_nearpier_grn.png" id="2_0ac7r"]
 [ext_resource type="Texture2D" uid="uid://bqfn6bix1qv4q" path="res://cutscenes/parallax/ground.png" id="2_jykso"]

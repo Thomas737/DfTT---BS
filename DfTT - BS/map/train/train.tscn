@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dipn655nljrdb"]
 
-[ext_resource type="Script" path="res://map/train/train.gd" id="1_vb8sy"]
+[ext_resource type="Script" uid="uid://uej6h707urpb" path="res://map/train/train.gd" id="1_vb8sy"]
 [ext_resource type="AudioStream" uid="uid://lu2tmrongi23" path="res://map/train/train_passing.wav" id="2_g056x"]
 [ext_resource type="Texture2D" uid="uid://depu2gyll88vw" path="res://map/train/steam_clouds/steamcloud0.png" id="2_jev56"]
 [ext_resource type="Texture2D" uid="uid://d2qyy2uw4h561" path="res://map/train/steam_clouds/steamcloud1.png" id="3_y51m1"]

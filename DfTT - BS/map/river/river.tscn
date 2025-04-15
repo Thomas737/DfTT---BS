@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://oa44da5mn2tk"]
 
-[ext_resource type="Script" path="res://map/river/river.gd" id="1_v12yd"]
+[ext_resource type="Script" uid="uid://f0868w7wg1um" path="res://map/river/river.gd" id="1_v12yd"]
 [ext_resource type="Texture2D" uid="uid://cj1p1ymso6ihd" path="res://map/river/river_straight.png" id="2_ipvtw"]
 [ext_resource type="Texture2D" uid="uid://dtlku3mxw00sr" path="res://map/river/river_curve.png" id="3_bj01x"]
 [ext_resource type="Texture2D" uid="uid://bpirfg8ylus8u" path="res://map/river/river_bridge.png" id="4_o6oqp"]

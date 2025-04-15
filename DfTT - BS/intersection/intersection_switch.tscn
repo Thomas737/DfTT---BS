@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=4 uid="uid://bdpbb6rvhsolo"]
 
-[ext_resource type="Script" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
+[ext_resource type="Script" uid="uid://b38sgf0whd4l7" path="res://intersection/intersection_switch.gd" id="1_2ja8m"]
 [ext_resource type="Texture2D" uid="uid://i4gvwq61q8y5" path="res://intersection/straight_rail.png" id="3_3g06u"]
 [ext_resource type="Texture2D" uid="uid://75mpbaywio22" path="res://intersection/curve.png" id="3_3m7hx"]
-[ext_resource type="Script" path="res://intersection/mechanical_switch.gd" id="4_ram1v"]
+[ext_resource type="Script" uid="uid://ym1evh77r7vu" path="res://intersection/mechanical_switch.gd" id="4_ram1v"]
 [ext_resource type="Texture2D" uid="uid://bscg82q61871" path="res://intersection/switch_handle.png" id="5_hyp7m"]
 [ext_resource type="Texture2D" uid="uid://dowcmvq57i5yd" path="res://intersection/switch_base.png" id="6_lncr4"]
 [ext_resource type="AudioStream" uid="uid://bnj38ti2j1oay" path="res://intersection/clack.mp3" id="7_lasw7"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8x1gsdpkla8s"]
 
-[ext_resource type="Script" path="res://map/tile/tile.gd" id="1_1tj22"]
-[ext_resource type="Script" path="res://map/tile/switch_handler.gd" id="2_gy37g"]
+[ext_resource type="Script" uid="uid://djru36d120svx" path="res://map/tile/tile.gd" id="1_1tj22"]
+[ext_resource type="Script" uid="uid://nffbv830buha" path="res://map/tile/switch_handler.gd" id="2_gy37g"]
 [ext_resource type="Texture2D" uid="uid://cqoyff34v52jc" path="res://map/tile/art/selected_zone.png" id="3_ajxmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pryik"]

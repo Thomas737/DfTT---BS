@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://bmfw7heifutpa"]
 
 [ext_resource type="Texture2D" uid="uid://dmnqhpldbfbun" path="res://cutscenes/bogey/cs_wb_opening_01.png" id="1_dl0pp"]
-[ext_resource type="Script" path="res://cutscenes/bogey/tamper_cutscene.gd" id="1_rtjv2"]
+[ext_resource type="Script" uid="uid://mjn5o7o60uyo" path="res://cutscenes/bogey/tamper_cutscene.gd" id="1_rtjv2"]
 [ext_resource type="Texture2D" uid="uid://btrbax161s7uu" path="res://cutscenes/parallax/parallax_03_nearpier_red.png" id="2_ck4xg"]
 [ext_resource type="Texture2D" uid="uid://cit0po1r25gln" path="res://cutscenes/bogey/cs_wb_opening_02.png" id="2_lkn8w"]
 [ext_resource type="Texture2D" uid="uid://kuomvg0kwksj" path="res://cutscenes/parallax/parallax_01_track_1102.png" id="2_n8tig"]

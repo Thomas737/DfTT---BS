@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DistrictResource" load_steps=7 format=3 uid="uid://d2jdeu165je8w"]
 
-[ext_resource type="Script" path="res://map/district_resource.gd" id="1_x23t4"]
+[ext_resource type="Script" uid="uid://cjauaagu0o3ig" path="res://map/district_resource.gd" id="1_x23t4"]
 [ext_resource type="Texture2D" uid="uid://80xahct2vbwu" path="res://map/districts/rural_tiles/rural_1.png" id="2_e16h0"]
 [ext_resource type="Texture2D" uid="uid://3fsnkpmjnr3w" path="res://map/districts/rural_tiles/rural_2.png" id="3_8iwqt"]
 [ext_resource type="Texture2D" uid="uid://4055lnlg7p" path="res://map/districts/rural_tiles/rural_m_1.png" id="3_s18t8"]

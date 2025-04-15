@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b08ouwipwg13t"]
 
-[ext_resource type="Script" path="res://menus/win_menu.gd" id="1_fxa5o"]
+[ext_resource type="Script" uid="uid://ch6uyw2nx2xii" path="res://menus/win_menu.gd" id="1_fxa5o"]
 [ext_resource type="PackedScene" uid="uid://djkyokmc7x43m" path="res://cutscenes/game_won/game_won.tscn" id="1_o5apj"]
 [ext_resource type="AudioStream" uid="uid://vyodiitvv8bf" path="res://menus/ending_theme.wav" id="2_ad7oq"]
 [ext_resource type="PackedScene" uid="uid://cltg5i15x734s" path="res://menus/main_menu.tscn" id="2_ulvcf"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxbmdpdsbbgw4"]
 
-[ext_resource type="Script" path="res://cutscenes/game_lost/game_lost.gd" id="1_80bbd"]
+[ext_resource type="Script" uid="uid://bl3ud1mbsur44" path="res://cutscenes/game_lost/game_lost.gd" id="1_80bbd"]
 [ext_resource type="Texture2D" uid="uid://c2fhw3d6yi4go" path="res://cutscenes/black_background.png" id="1_k15k1"]
 [ext_resource type="Texture2D" uid="uid://chgemgtbbrc8v" path="res://cutscenes/game_lost/dftt_letter_fail.png" id="2_gfvpm"]
 [ext_resource type="Texture2D" uid="uid://rogel5fm6fbm" path="res://cutscenes/spacepopup.png" id="4_fikjc"]

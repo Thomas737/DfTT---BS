@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b052cg7ru2dl"]
 
-[ext_resource type="Script" path="res://intersection/intersection.gd" id="1_4nl2o"]
+[ext_resource type="Script" uid="uid://cnek2acfrp331" path="res://intersection/intersection.gd" id="1_4nl2o"]
 [ext_resource type="Texture2D" uid="uid://0wdjfnki5f57" path="res://intersection/ground.png" id="2_n535c"]
 
 [node name="Intersection" type="Node2D"]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TrainResource" load_steps=8 format=3 uid="uid://brpwpcpj01lvr"]
 
 [ext_resource type="Texture2D" uid="uid://bwojahqet6r62" path="res://map/train/Container_Modern.png" id="1_7qpda"]
-[ext_resource type="Script" path="res://map/train/train_resource.gd" id="1_aaewx"]
+[ext_resource type="Script" uid="uid://bosfkg014ceae" path="res://map/train/train_resource.gd" id="1_aaewx"]
 [ext_resource type="Texture2D" uid="uid://8ni6whgh8vbv" path="res://map/train/container_steam.png" id="1_feufg"]
 [ext_resource type="Texture2D" uid="uid://dhxou0rtbqlg4" path="res://map/train/loco_steam.png" id="2_2rjt8"]
 [ext_resource type="Texture2D" uid="uid://bet2obhbi25ob" path="res://map/train/Loco_Modern2.png" id="2_o64dn"]
